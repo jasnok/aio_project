@@ -1,0 +1,5 @@
+{
+  "error": "RangeError: Maximum call stack size exceeded",
+  "stack": "RangeError: Maximum call stack size exceeded\n    at <anonymous>:12974:78\n    at Array.map (<anonymous>)\n    at splitTable (<anonymous>:12974:65)\n    at splitTable (<anonymous>:13020:14)\n    at splitTable (<anonymous>:13020:14)\n    at splitTable (<anonymous>:13020:14)\n    at splitTable (<anonymous>:13020:14)\n    at splitTable (<anonymous>:13020:14)\n    at splitTable (<anonymous>:13020:14)\n    at splitTable (<anonymous>:13020:14)",
+  "logs": []
+}

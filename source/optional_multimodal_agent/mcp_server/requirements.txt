@@ -1,0 +1,10 @@
+openai
+mcp>=1.27,<2
+psycopg[binary]
+redis
+httpx
+python-dotenv
+Pillow
+
+# tests
+pytest

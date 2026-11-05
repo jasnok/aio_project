@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "project": "SongPilot AI",
+  "run_id": "design-heat-campaign-001",
+  "revision": 1,
+  "status": "draft",
+  "execution_mode": "design_example",
+  "request": {
+    "purpose": "여름철 폭염 예방 캠페인용 홍보 음악 기획",
+    "audience": "어르신을 포함한 지역 주민",
+    "channel": "지자체 SNS와 행사 안내 영상",
+    "target_duration_seconds": 30,
+    "language": "ko",
+    "tone": ["밝음", "신뢰감", "친근함"],
+    "required_messages": [
+      {"id": "msg-01", "text": "물 마시기"},
+      {"id": "msg-02", "text": "그늘 이용"},
+      {"id": "msg-03", "text": "낮 시간 야외활동 자제"}
+    ],
+    "required_phrases": [],
+    "forbidden_terms": ["무조건 안전", "완벽한 예방"],
+    "expression_guidelines": [
+      "쉬운 한국어와 짧은 문장을 사용한다",
+      "안전이나 의학적 효능을 보장하는 표현을 사용하지 않는다",
+      "구체적인 행동이 들리도록 메시지를 전달한다"
+    ]
+  },
+  "plan": {
+    "target_summary": "어르신도 이해하기 쉬운 폭염 예방 행동 안내",
+    "concept": "밝고 차분한 반복 후렴으로 세 가지 행동을 기억하도록 돕는 기획",
+    "sections": ["짧은 도입", "세 가지 행동 안내", "후렴 반복"],
+    "message_ids": ["msg-01", "msg-02", "msg-03"]
+  },
+  "lyrics": "[Verse]\n물을 마셔요, 쉬엄쉬엄\n그늘에서 잠시 쉬어요\n한낮에는 바깥 활동 줄여요\n[Chorus]\n물 한 모금, 그늘 쉼터\n우리 함께 기억해요",
+  "style": {
+    "prompt": "Bright and reassuring Korean public-service jingle, gentle acoustic pop, 100 BPM, clear and warm Korean vocal, simple diction, acoustic guitar, soft piano, light percussion, short repeatable chorus. Target a 30-second arrangement; actual duration must be checked after audio generation.",
+    "bpm": 100,
+    "target_duration_seconds": 30
+  },
+  "review": {
+    "content_revision": 1,
+    "checks": [
+      {"id": "schema_format", "kind": "deterministic", "status": "not_run", "evidence": "", "message": "설계 예시의 검수 기록은 미실행 상태다. 별도 구조 검증 결과와 구분한다"},
+      {"id": "required_phrases", "kind": "deterministic", "status": "not_run", "evidence": "", "message": "지정 필수 문구의 정확 일치 검사 예정. 이번 예시의 필수 문구 목록은 비어 있다"},
+      {"id": "forbidden_terms", "kind": "deterministic", "status": "not_run", "evidence": "", "message": "가사와 스타일 및 검수 대상 문구 전체의 금지어 검사 예정"},
+      {"id": "expression_guidelines", "kind": "semantic", "status": "not_run", "evidence": "", "message": "쉬운 한국어, 표현 적절성, 안전 보장 표현 여부를 검수할 예정"},
+      {"id": "message:msg-01", "kind": "semantic", "status": "not_run", "evidence": "", "message": "물 마시기 메시지의 의미 포함과 근거 구절 확인 예정"},
+      {"id": "message:msg-02", "kind": "semantic", "status": "not_run", "evidence": "", "message": "그늘 이용 메시지의 의미 포함과 근거 구절 확인 예정"},
+      {"id": "message:msg-03", "kind": "semantic", "status": "not_run", "evidence": "", "message": "낮 시간 야외활동 자제 메시지의 의미 포함과 근거 구절 확인 예정"},
+      {"id": "duration_estimate", "kind": "estimate", "status": "not_run", "evidence": "", "message": "가사 분량은 길이 추정에만 사용할 수 있으며 실제 30초 충족을 보장하지 않는다"}
+    ],
+    "duration_verified": false
+  },
+  "approval": {"status": "pending", "reviewer": null, "decided_at": null, "approved_revision": null},
+  "history": [],
+  "errors": [],
+  "max_revision_attempts": 2,
+  "revision_attempts": 0
+}

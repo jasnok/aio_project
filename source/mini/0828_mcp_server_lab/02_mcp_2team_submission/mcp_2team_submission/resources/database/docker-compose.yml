@@ -1,0 +1,44 @@
+services:
+  pgvector:
+    image: pgvector/pgvector:pg16
+    container_name: mcp-2team-pgvector
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      TZ: Asia/Seoul
+    ports:
+      - "${POSTGRES_BIND_ADDRESS:-0.0.0.0}:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - mcp_2team_pgvector_data:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: mcp-2team-ollama
+    restart: unless-stopped
+    environment:
+      OLLAMA_HOST: 0.0.0.0:11434
+    ports:
+      - "${OLLAMA_BIND_ADDRESS:-0.0.0.0}:${OLLAMA_PORT:-11434}:11434"
+    volumes:
+      - mcp_2team_ollama_data:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+volumes:
+  mcp_2team_pgvector_data:
+    name: mcp_2team_pgvector_data
+  mcp_2team_ollama_data:
+    name: mcp_2team_ollama_data

@@ -1,0 +1,28 @@
+{
+  "counting_method": "Unicode NFC code points; spaces and punctuation included; CRLF normalized to LF",
+  "title_including_spaces": 27,
+  "body_including_spaces_excluding_linebreaks": 1812,
+  "title_and_body_including_spaces_excluding_linebreaks": 1839,
+  "body_including_spaces_and_LF_linebreaks": 1821,
+  "entire_txt_including_spaces_and_LF_linebreaks": 1850,
+  "entire_txt_including_spaces_and_CRLF_linebreaks": 1861,
+  "paragraph_count": 10,
+  "pdf_page_count": 1,
+  "pdf_page_size_mm": [
+    [
+      210.0,
+      297.0
+    ]
+  ],
+  "format": {
+    "font": "맑은 고딕",
+    "font_size_pt": 11,
+    "line_spacing_percent": 160,
+    "leading_pt": 17.6,
+    "paragraph_before_pt": 0,
+    "paragraph_after_pt": 0,
+    "table_width_mm": 172.72,
+    "cell_horizontal_padding_mm": 1.799
+  },
+  "pdf_text_matches_final_body": true
+}

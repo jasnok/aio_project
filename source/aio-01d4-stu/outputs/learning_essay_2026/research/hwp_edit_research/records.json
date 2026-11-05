@@ -1,0 +1,2786 @@
+{
+  "streams": [
+    [
+      "\u0005HwpSummaryInformation",
+      529
+    ],
+    [
+      "BodyText/Section0",
+      4245
+    ],
+    [
+      "DocInfo",
+      2506
+    ],
+    [
+      "DocOptions/_LinkDoc",
+      524
+    ],
+    [
+      "FileHeader",
+      256
+    ],
+    [
+      "PrvImage",
+      48777
+    ],
+    [
+      "PrvText",
+      2046
+    ],
+    [
+      "Scripts/DefaultJScript",
+      16
+    ],
+    [
+      "Scripts/JScriptVersion",
+      13
+    ]
+  ],
+  "records": [
+    {
+      "i": 0,
+      "tag": 66,
+      "level": 0,
+      "size": 24,
+      "para": {
+        "chars": 25,
+        "ctrl": 2052,
+        "shape": 27,
+        "style": 0,
+        "split": 3,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 3121190098
+      }
+    },
+    {
+      "i": 1,
+      "tag": 67,
+      "level": 1,
+      "size": 50,
+      "text": "\u0002捤獥\u0000\u0000\u0000\u0000\u0002\u0002汤捯\u0000\u0000\u0000\u0000\u0002\u000b氠瑢\u0000\u0000\u0000\u0000\u000b\r"
+    },
+    {
+      "i": 2,
+      "tag": 68,
+      "level": 1,
+      "size": 8
+    },
+    {
+      "i": 3,
+      "tag": 69,
+      "level": 1,
+      "size": 36
+    },
+    {
+      "i": 4,
+      "tag": 71,
+      "level": 1,
+      "size": 47
+    },
+    {
+      "i": 5,
+      "tag": 73,
+      "level": 2,
+      "size": 40
+    },
+    {
+      "i": 6,
+      "tag": 74,
+      "level": 2,
+      "size": 28
+    },
+    {
+      "i": 7,
+      "tag": 74,
+      "level": 2,
+      "size": 28
+    },
+    {
+      "i": 8,
+      "tag": 75,
+      "level": 2,
+      "size": 14
+    },
+    {
+      "i": 9,
+      "tag": 75,
+      "level": 2,
+      "size": 14
+    },
+    {
+      "i": 10,
+      "tag": 75,
+      "level": 2,
+      "size": 14
+    },
+    {
+      "i": 11,
+      "tag": 71,
+      "level": 1,
+      "size": 16
+    },
+    {
+      "i": 12,
+      "tag": 71,
+      "level": 1,
+      "size": 46
+    },
+    {
+      "i": 13,
+      "tag": 77,
+      "level": 2,
+      "size": 32
+    },
+    {
+      "i": 14,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 15,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483677,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 16,
+      "tag": 67,
+      "level": 3,
+      "size": 58,
+      "text": "2026년 서울시 평생교육이용권 수기 공모전 신청서\r"
+    },
+    {
+      "i": 17,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 18,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 19,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 20,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483649,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 21,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 22,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 23,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 24,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 33,
+        "ctrl": 0,
+        "shape": 32,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 25,
+      "tag": 67,
+      "level": 3,
+      "size": 66,
+      "text": "□ 서울시 평생교육이용권 수기 공모 신청에 따른 동의 사항\r"
+    },
+    {
+      "i": 26,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 27,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 28,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 1,
+        "ctrl": 0,
+        "shape": 32,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 0
+      }
+    },
+    {
+      "i": 29,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 30,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 31,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 22,
+        "ctrl": 0,
+        "shape": 35,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 0
+      }
+    },
+    {
+      "i": 32,
+      "tag": 67,
+      "level": 3,
+      "size": 44,
+      "text": "① 1인당 1개 작품 응모 가능합니다.\r"
+    },
+    {
+      "i": 33,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 34,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 35,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 34,
+        "ctrl": 0,
+        "shape": 35,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 0
+      }
+    },
+    {
+      "i": 36,
+      "tag": 67,
+      "level": 3,
+      "size": 68,
+      "text": "② 평생교육이용권 사용 내역이 없는 경우 접수가 불가합니다.\r"
+    },
+    {
+      "i": 37,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 38,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 39,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 115,
+        "ctrl": 0,
+        "shape": 36,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 3,
+        "nrange": 0,
+        "nline": 3,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 40,
+      "tag": 67,
+      "level": 3,
+      "size": 230,
+      "text": "③ 출품작에 대한 저작권은 저작자에게 있으며, 수상작에 대한 복제권, 공연권, 공중송신권, 전시권, 배포권, 대여권 및 2차적 저작물 작성권을 포함한 모든 저작재산권은 서울특별시평생교육진흥원에 귀속됩니다.\r"
+    },
+    {
+      "i": 41,
+      "tag": 68,
+      "level": 3,
+      "size": 24
+    },
+    {
+      "i": 42,
+      "tag": 69,
+      "level": 3,
+      "size": 108
+    },
+    {
+      "i": 43,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 49,
+        "ctrl": 0,
+        "shape": 35,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 2,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 44,
+      "tag": 67,
+      "level": 3,
+      "size": 98,
+      "text": "④ 수상작은 추후 서울특별시평생교육진흥원에서 발행하는 홍보물 등에 게재될 수 있습니다.\r"
+    },
+    {
+      "i": 45,
+      "tag": 68,
+      "level": 3,
+      "size": 16
+    },
+    {
+      "i": 46,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 47,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 50,
+        "ctrl": 0,
+        "shape": 36,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 2,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 48,
+      "tag": 67,
+      "level": 3,
+      "size": 100,
+      "text": "⑤ 수상작으로 선정될 경우, 본인의 학습사례를 직접 녹음한 음성 파일을 제출해야 합니다.\r"
+    },
+    {
+      "i": 49,
+      "tag": 68,
+      "level": 3,
+      "size": 16
+    },
+    {
+      "i": 50,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 51,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 69,
+        "ctrl": 0,
+        "shape": 36,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 2,
+        "nrange": 0,
+        "nline": 2,
+        "id": 0
+      }
+    },
+    {
+      "i": 52,
+      "tag": 67,
+      "level": 3,
+      "size": 138,
+      "text": "⑥ 수상자가 제출한 녹음 음성 파일은 서울시 평생교육이용권 사업 및 홍보를 위한 영상 콘텐츠 제작에 활용될 수 있습니다. \r"
+    },
+    {
+      "i": 53,
+      "tag": 68,
+      "level": 3,
+      "size": 16
+    },
+    {
+      "i": 54,
+      "tag": 69,
+      "level": 3,
+      "size": 72
+    },
+    {
+      "i": 55,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 110,
+        "ctrl": 0,
+        "shape": 36,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 4,
+        "nrange": 0,
+        "nline": 3,
+        "id": 0
+      }
+    },
+    {
+      "i": 56,
+      "tag": 67,
+      "level": 3,
+      "size": 220,
+      "text": "⑦ 제작된 영상은 서울특별시평생교육진흥원 공식 유튜브 채널, 홈페이지 및 공식 SNS 등사업 홍보를 위한 매체에 게시될 수 있으며 영상 및 관련 콘텐츠의 활용 기간은 게시일로부터 5년으로 합니다.\r"
+    },
+    {
+      "i": 57,
+      "tag": 68,
+      "level": 3,
+      "size": 32
+    },
+    {
+      "i": 58,
+      "tag": 69,
+      "level": 3,
+      "size": 108
+    },
+    {
+      "i": 59,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 49,
+        "ctrl": 0,
+        "shape": 35,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 2,
+        "nrange": 0,
+        "nline": 1,
+        "id": 0
+      }
+    },
+    {
+      "i": 60,
+      "tag": 67,
+      "level": 3,
+      "size": 98,
+      "text": "⑧ 타 매체에 게재된 글이나 입상작, 모방작은 공모하실 수 없으며, 출품작은 타 매체에\r"
+    },
+    {
+      "i": 61,
+      "tag": 68,
+      "level": 3,
+      "size": 16
+    },
+    {
+      "i": 62,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 63,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 74,
+        "ctrl": 0,
+        "shape": 36,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 4,
+        "nrange": 0,
+        "nline": 2,
+        "id": 0
+      }
+    },
+    {
+      "i": 64,
+      "tag": 67,
+      "level": 3,
+      "size": 148,
+      "text": "   게재 하실 수 없습니다. 이와 관련하여 추후 사실이 확인될 경우 입상 취소 및 관련 규정에 따른 조치가 이루어질 수 있습니다.\r"
+    },
+    {
+      "i": 65,
+      "tag": 68,
+      "level": 3,
+      "size": 32
+    },
+    {
+      "i": 66,
+      "tag": 69,
+      "level": 3,
+      "size": 72
+    },
+    {
+      "i": 67,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 45,
+        "ctrl": 0,
+        "shape": 35,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 68,
+      "tag": 67,
+      "level": 3,
+      "size": 90,
+      "text": "⑨ 본인은 표절이나 모방 관련 내용을 숙지하였으며 문제가 없음을 확인하였습니다.\r"
+    },
+    {
+      "i": 69,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 70,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 71,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 1,
+        "ctrl": 0,
+        "shape": 33,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 0
+      }
+    },
+    {
+      "i": 72,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 73,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 74,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 1,
+        "ctrl": 0,
+        "shape": 33,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 0
+      }
+    },
+    {
+      "i": 75,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 76,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 77,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 37,
+        "ctrl": 0,
+        "shape": 34,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 78,
+      "tag": 67,
+      "level": 3,
+      "size": 74,
+      "text": "위 사항을 숙지하였으며, 저작권 및 작품 사용에 대해 동의합니다.\r"
+    },
+    {
+      "i": 79,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 80,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 81,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 41,
+        "ctrl": 1024,
+        "shape": 34,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 2,
+        "id": 0
+      }
+    },
+    {
+      "i": 82,
+      "tag": 67,
+      "level": 3,
+      "size": 82,
+      "text": "또한,  ｢2026년 서울시 평생교육이용권 공모전｣ \n참가를 신청합니다.\r"
+    },
+    {
+      "i": 83,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 84,
+      "tag": 69,
+      "level": 3,
+      "size": 72
+    },
+    {
+      "i": 85,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 1,
+        "ctrl": 0,
+        "shape": 32,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 86,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 87,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 88,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 14,
+        "ctrl": 0,
+        "shape": 34,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 89,
+      "tag": 67,
+      "level": 3,
+      "size": 28,
+      "text": "2026.   .   .\r"
+    },
+    {
+      "i": 90,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 91,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 92,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 1,
+        "ctrl": 0,
+        "shape": 32,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 93,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 94,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 95,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 73,
+        "ctrl": 0,
+        "shape": 32,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 2,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 96,
+      "tag": 67,
+      "level": 3,
+      "size": 146,
+      "text": "                                       신청인 :                  (서명 또는 날인)\r"
+    },
+    {
+      "i": 97,
+      "tag": 68,
+      "level": 3,
+      "size": 16
+    },
+    {
+      "i": 98,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 99,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 1,
+        "ctrl": 0,
+        "shape": 32,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 100,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 101,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 102,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483666,
+        "ctrl": 0,
+        "shape": 32,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 103,
+      "tag": 67,
+      "level": 3,
+      "size": 36,
+      "text": " 서울특별시평생교육진흥원장 귀하\r"
+    },
+    {
+      "i": 104,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 105,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 106,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 107,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 1,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 0
+      }
+    },
+    {
+      "i": 108,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 109,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 110,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 21,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 111,
+      "tag": 67,
+      "level": 3,
+      "size": 42,
+      "text": "【 개인정보 수집 및 이용 동의서 】\r"
+    },
+    {
+      "i": 112,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 113,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 114,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 1,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 115,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 116,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 117,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 82,
+        "ctrl": 0,
+        "shape": 0,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 2,
+        "nrange": 0,
+        "nline": 2,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 118,
+      "tag": 67,
+      "level": 3,
+      "size": 164,
+      "text": "서울시평생교육진흥원은 개인정보보호법에 의거, 『2026년 서울시 평생교육이용권 공모전』을 위해 아래와 같이 개인정보를 수집 · 이용하고자 합니다.\r"
+    },
+    {
+      "i": 119,
+      "tag": 68,
+      "level": 3,
+      "size": 16
+    },
+    {
+      "i": 120,
+      "tag": 69,
+      "level": 3,
+      "size": 72
+    },
+    {
+      "i": 121,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 1,
+        "ctrl": 0,
+        "shape": 25,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 122,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 123,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 124,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 36,
+        "ctrl": 0,
+        "shape": 26,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 125,
+      "tag": 67,
+      "level": 3,
+      "size": 72,
+      "text": "수집 · 이용 목적 : 서울시 평생교육이용권 공모전 운영, 홍보\r"
+    },
+    {
+      "i": 126,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 127,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 128,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 42,
+        "ctrl": 0,
+        "shape": 0,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 2,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 129,
+      "tag": 67,
+      "level": 3,
+      "size": 84,
+      "text": "2. 개인정보 수집 항목 : 성명, 생년월일, 휴대전화번호, 이메일, 주소\r"
+    },
+    {
+      "i": 130,
+      "tag": 68,
+      "level": 3,
+      "size": 16
+    },
+    {
+      "i": 131,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 132,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 26,
+        "ctrl": 0,
+        "shape": 0,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 133,
+      "tag": 67,
+      "level": 3,
+      "size": 52,
+      "text": "3. 개인정보의 보유 및 이용 기간 : 1년 \r"
+    },
+    {
+      "i": 134,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 135,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 136,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 50,
+        "ctrl": 0,
+        "shape": 0,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 4,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 137,
+      "tag": 67,
+      "level": 3,
+      "size": 100,
+      "text": "4. 개인정보 수집 동의(필수사항)에 거부하실 수 있으며, 거부 시 지원이 불가합니다. \r"
+    },
+    {
+      "i": 138,
+      "tag": 68,
+      "level": 3,
+      "size": 32
+    },
+    {
+      "i": 139,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 140,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 1,
+        "ctrl": 0,
+        "shape": 25,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 141,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 142,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 143,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483700,
+        "ctrl": 2048,
+        "shape": 0,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 2,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 144,
+      "tag": 67,
+      "level": 3,
+      "size": 104,
+      "text": "  본인은 위 내용을 숙지하였으며, 해당 내용에 동의합니다.  \u000b牭景\u0000\u0000\u0000\u0000\u000b\u000b牭景\u0000\u0000\u0000\u0000\u000b\r"
+    },
+    {
+      "i": 145,
+      "tag": 68,
+      "level": 3,
+      "size": 16
+    },
+    {
+      "i": 146,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 147,
+      "tag": 71,
+      "level": 3,
+      "size": 46
+    },
+    {
+      "i": 148,
+      "tag": 91,
+      "level": 4,
+      "size": 836
+    },
+    {
+      "i": 149,
+      "tag": 71,
+      "level": 3,
+      "size": 46
+    },
+    {
+      "i": 150,
+      "tag": 91,
+      "level": 4,
+      "size": 844
+    },
+    {
+      "i": 151,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 152,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483649,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 0
+      }
+    },
+    {
+      "i": 153,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 154,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 155,
+      "tag": 66,
+      "level": 0,
+      "size": 24,
+      "para": {
+        "chars": 9,
+        "ctrl": 2048,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 156,
+      "tag": 67,
+      "level": 1,
+      "size": 18,
+      "text": "\u000b氠瑢\u0000\u0000\u0000\u0000\u000b\r"
+    },
+    {
+      "i": 157,
+      "tag": 68,
+      "level": 1,
+      "size": 8
+    },
+    {
+      "i": 158,
+      "tag": 69,
+      "level": 1,
+      "size": 36
+    },
+    {
+      "i": 159,
+      "tag": 71,
+      "level": 1,
+      "size": 46
+    },
+    {
+      "i": 160,
+      "tag": 77,
+      "level": 2,
+      "size": 40
+    },
+    {
+      "i": 161,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 162,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483657,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 163,
+      "tag": 67,
+      "level": 3,
+      "size": 18,
+      "text": "【 기본사항 】\r"
+    },
+    {
+      "i": 164,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 165,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 166,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 167,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483651,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 168,
+      "tag": 67,
+      "level": 3,
+      "size": 6,
+      "text": "성명\r"
+    },
+    {
+      "i": 169,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 170,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 171,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 172,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483649,
+        "ctrl": 0,
+        "shape": 23,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 173,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 174,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 175,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 176,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483653,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 177,
+      "tag": 67,
+      "level": 3,
+      "size": 10,
+      "text": "생년월일\r"
+    },
+    {
+      "i": 178,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 179,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 180,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 181,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483659,
+        "ctrl": 0,
+        "shape": 23,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 182,
+      "tag": 67,
+      "level": 3,
+      "size": 22,
+      "text": "0000.00.00\r"
+    },
+    {
+      "i": 183,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 184,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 185,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 186,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483655,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 187,
+      "tag": 67,
+      "level": 3,
+      "size": 14,
+      "text": "휴대전화번호\r"
+    },
+    {
+      "i": 188,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 189,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 190,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 191,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 15,
+        "ctrl": 0,
+        "shape": 23,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 192,
+      "tag": 67,
+      "level": 3,
+      "size": 30,
+      "text": "000-0000-0000 \r"
+    },
+    {
+      "i": 193,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 194,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 195,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483663,
+        "ctrl": 0,
+        "shape": 23,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 0
+      }
+    },
+    {
+      "i": 196,
+      "tag": 67,
+      "level": 3,
+      "size": 30,
+      "text": "(연락 가능한 번호 기입)\r"
+    },
+    {
+      "i": 197,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 198,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 199,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 200,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483655,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 201,
+      "tag": 67,
+      "level": 3,
+      "size": 14,
+      "text": "E-mail\r"
+    },
+    {
+      "i": 202,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 203,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 204,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 205,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483649,
+        "ctrl": 0,
+        "shape": 23,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 206,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 207,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 208,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 209,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483651,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 210,
+      "tag": 67,
+      "level": 3,
+      "size": 6,
+      "text": "주소\r"
+    },
+    {
+      "i": 211,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 212,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 213,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 214,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483649,
+        "ctrl": 0,
+        "shape": 23,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 215,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 216,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 217,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 218,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483670,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 219,
+      "tag": 67,
+      "level": 3,
+      "size": 44,
+      "text": "【 서울시 평생교육이용권 이용 정보 】\r"
+    },
+    {
+      "i": 220,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 221,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 222,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 223,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483655,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 224,
+      "tag": 67,
+      "level": 3,
+      "size": 14,
+      "text": "이용권 유형\r"
+    },
+    {
+      "i": 225,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 226,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 227,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 228,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483651,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 229,
+      "tag": 67,
+      "level": 3,
+      "size": 6,
+      "text": "차수\r"
+    },
+    {
+      "i": 230,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 231,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 232,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 233,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483655,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 234,
+      "tag": 67,
+      "level": 3,
+      "size": 14,
+      "text": "사용기관명 \r"
+    },
+    {
+      "i": 235,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 236,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 237,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 238,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483652,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 0
+      }
+    },
+    {
+      "i": 239,
+      "tag": 67,
+      "level": 3,
+      "size": 8,
+      "text": "강좌명\r"
+    },
+    {
+      "i": 240,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 241,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 242,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 243,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 14,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 2,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 244,
+      "tag": 67,
+      "level": 3,
+      "size": 28,
+      "text": "일반/디지털/노인/장애인\r"
+    },
+    {
+      "i": 245,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 246,
+      "tag": 69,
+      "level": 3,
+      "size": 72
+    },
+    {
+      "i": 247,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483654,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 0
+      }
+    },
+    {
+      "i": 248,
+      "tag": 67,
+      "level": 3,
+      "size": 12,
+      "text": "(택 1)\r"
+    },
+    {
+      "i": 249,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 250,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 251,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 252,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 7,
+        "ctrl": 0,
+        "shape": 28,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 253,
+      "tag": 67,
+      "level": 3,
+      "size": 14,
+      "text": "1차/2차/\r"
+    },
+    {
+      "i": 254,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 255,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 256,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 6,
+        "ctrl": 0,
+        "shape": 28,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 0
+      }
+    },
+    {
+      "i": 257,
+      "tag": 67,
+      "level": 3,
+      "size": 12,
+      "text": "우수이용자\r"
+    },
+    {
+      "i": 258,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 259,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 260,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483654,
+        "ctrl": 0,
+        "shape": 28,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 0
+      }
+    },
+    {
+      "i": 261,
+      "tag": 67,
+      "level": 3,
+      "size": 12,
+      "text": "(택 1)\r"
+    },
+    {
+      "i": 262,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 263,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 264,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 265,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483649,
+        "ctrl": 0,
+        "shape": 29,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 266,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 267,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 268,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 269,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483649,
+        "ctrl": 0,
+        "shape": 29,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 0
+      }
+    },
+    {
+      "i": 270,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 271,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 272,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 273,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483649,
+        "ctrl": 0,
+        "shape": 29,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 274,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 275,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 276,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 277,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483649,
+        "ctrl": 0,
+        "shape": 29,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 0
+      }
+    },
+    {
+      "i": 278,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 279,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 280,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 281,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483649,
+        "ctrl": 0,
+        "shape": 29,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 282,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 283,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 284,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 285,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483649,
+        "ctrl": 0,
+        "shape": 29,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 0
+      }
+    },
+    {
+      "i": 286,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 287,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 288,
+      "tag": 66,
+      "level": 0,
+      "size": 24,
+      "para": {
+        "chars": 9,
+        "ctrl": 2048,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 289,
+      "tag": 67,
+      "level": 1,
+      "size": 18,
+      "text": "\u000b氠瑢\u0000\u0000\u0000\u0000\u000b\r"
+    },
+    {
+      "i": 290,
+      "tag": 68,
+      "level": 1,
+      "size": 8
+    },
+    {
+      "i": 291,
+      "tag": 69,
+      "level": 1,
+      "size": 36
+    },
+    {
+      "i": 292,
+      "tag": 71,
+      "level": 1,
+      "size": 46
+    },
+    {
+      "i": 293,
+      "tag": 77,
+      "level": 2,
+      "size": 28
+    },
+    {
+      "i": 294,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 295,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483657,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 296,
+      "tag": 67,
+      "level": 3,
+      "size": 18,
+      "text": "【 학습수기 】\r"
+    },
+    {
+      "i": 297,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 298,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 299,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 300,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483652,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 0
+      }
+    },
+    {
+      "i": 301,
+      "tag": 67,
+      "level": 3,
+      "size": 8,
+      "text": "제 목\r"
+    },
+    {
+      "i": 302,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 303,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 304,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 305,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483649,
+        "ctrl": 0,
+        "shape": 20,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 0
+      }
+    },
+    {
+      "i": 306,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 307,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 308,
+      "tag": 72,
+      "level": 2,
+      "size": 47
+    },
+    {
+      "i": 309,
+      "tag": 66,
+      "level": 2,
+      "size": 24,
+      "para": {
+        "chars": 2147483675,
+        "ctrl": 0,
+        "shape": 30,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 1,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 310,
+      "tag": 67,
+      "level": 3,
+      "size": 54,
+      "text": "※ 3000자 이내 작성(셀 양식, 분량 준수)\r"
+    },
+    {
+      "i": 311,
+      "tag": 68,
+      "level": 3,
+      "size": 8
+    },
+    {
+      "i": 312,
+      "tag": 69,
+      "level": 3,
+      "size": 36
+    },
+    {
+      "i": 313,
+      "tag": 66,
+      "level": 0,
+      "size": 24,
+      "para": {
+        "chars": 2147483706,
+        "ctrl": 0,
+        "shape": 31,
+        "style": 0,
+        "split": 0,
+        "ncharshape": 2,
+        "nrange": 0,
+        "nline": 1,
+        "id": 2147483648
+      }
+    },
+    {
+      "i": 314,
+      "tag": 67,
+      "level": 1,
+      "size": 116,
+      "text": " ※ 양식 및 셀 서식 준수하여 작성해 주세요. 맑은고딕 11pt, 줄간격 160%(위, 아래 0pt)\r"
+    },
+    {
+      "i": 315,
+      "tag": 68,
+      "level": 1,
+      "size": 16
+    },
+    {
+      "i": 316,
+      "tag": 69,
+      "level": 1,
+      "size": 36
+    }
+  ]
+}

@@ -1,0 +1,320 @@
+{
+  "name": "66-agy Meeting Classifier",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "meeting-classify",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "71e54c9a-b4e6-4d2a-8921-96f7c81a1a01",
+      "name": "Meeting webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "66-meeting-classify-webhook"
+    },
+    {
+      "parameters": {},
+      "id": "82a15c3e-c5d7-4f3b-9a41-11a8d72b2b02",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c1f7b82e-9d3a-4a5c-bb12-38d72a19ef41",
+              "name": "title",
+              "value": "10월 16일 주간 회의",
+              "type": "string"
+            },
+            {
+              "id": "f8a2c14d-6e5b-4c7a-9a81-22b8c91a0f32",
+              "name": "notes",
+              "value": "참석: 김민지, 이준호, 박서연. 1) 신규 고객 문의 응답 템플릿을 이준호가 금요일까지 정리한다. 2) 박서연은 다음 주 월요일까지 VPN 장애 보고서를 작성한다. 3) 서버 점검 일정은 김민지가 오늘 중 공지한다. 4) 회의실 예약 규칙 개선은 담당자를 다음 회의에서 정한다. 다음 회의는 10월 23일.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "93b26d4f-d6e8-4a4c-ab52-22b9e83c3c03",
+      "name": "Sample Input",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a65c3a2e-b4c8-5087-a475-c6a858d9b7d6",
+              "name": "llm_url",
+              "value": "https://api.openai.com/v1",
+              "type": "string"
+            },
+            {
+              "id": "e30dbc5a-e549-5565-9f8f-96e55670f69f",
+              "name": "model",
+              "value": "gpt-4.1-mini",
+              "type": "string"
+            },
+            {
+              "id": "4ef048c7-0ac0-5913-b743-12cda43aa2b2",
+              "name": "title",
+              "value": "={{ $json.body?.title || $json.title || '10월 16일 주간 회의' }}",
+              "type": "string"
+            },
+            {
+              "id": "b901c535-f38f-5a59-975a-05074ce8044c",
+              "name": "notes",
+              "value": "={{ $json.body?.notes || $json.body?.text || (typeof $json.body === 'string' ? $json.body : '') || $json.notes || $json.text || '' }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": false,
+        "options": {}
+      },
+      "id": "a4c37e50-e7f9-4b5d-bc63-33caf94d4d04",
+      "name": "Settings",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        440,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "41964561-0243-53d7-b1cd-0e64054d7460",
+              "leftValue": "={{ $json.notes }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              },
+              "rightValue": ""
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b5d48f61-f80a-4c6e-cd74-44db0a5e5e05",
+      "name": "Has notes?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        660,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"error\": \"notes is required\" } }}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "id": "c6e59072-091b-4d7f-de85-55ec1b6f6f06",
+      "name": "Reject empty",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        880,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Settings').first().json.llm_url }}/chat/completions",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  model: $('Settings').first().json.model,\n  temperature: 0,\n  response_format: {\n    type: 'json_schema',\n    json_schema: {\n      name: 'meeting_classification',\n      schema: {\n        type: 'object',\n        properties: {\n          summary: {\n            type: 'string',\n            description: '회의 내용 요약 (한국어 최대 2문장)'\n          },\n          attendees: {\n            type: 'array',\n            items: { type: 'string' },\n            description: '참석자 이름 목록'\n          },\n          actions: {\n            type: 'array',\n            items: {\n              type: 'object',\n              properties: {\n                task: { type: 'string', description: '할 일 내용' },\n                owner: { type: ['string', 'null'], description: '담당자 이름. 없거나 미정이면 null' },\n                due: { type: ['string', 'null'], description: '기한. 없거나 정해지지 않았으면 null' }\n              },\n              required: ['task', 'owner', 'due']\n            },\n            description: '할 일 목록'\n          },\n          next_meeting: {\n            type: ['string', 'null'],\n            description: '다음 회의 일정 또는 null'\n          }\n        },\n        required: ['summary', 'attendees', 'actions']\n      }\n    }\n  },\n  messages: [\n    {\n      role: 'system',\n      content: 'You analyze meeting notes. Extract: 1) summary (at most 2 sentences in Korean), 2) attendees (names array), 3) actions: list of {task: str in Korean, owner: str or null, due: str or null}. If owner is not assigned or to be decided later, set owner to null. If due date is not specified, set due to null.'\n    },\n    {\n      role: 'user',\n      content: $('Settings').first().json.notes\n    }\n  ]\n}) }}",
+        "options": {
+          "timeout": 180000
+        },
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi"
+      },
+      "id": "d7f6a183-1a2c-4e80-ef96-66fd2c7a7a07",
+      "name": "LLM extract attendees & actions",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        880,
+        -80
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "openAiCourse0001",
+          "name": "OpenAI (.env)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// LLM 응답 (JSON 문자열) 파싱\nconst raw = String($input.first().json.choices?.[0]?.message?.content ?? '').trim().replace(/^```(json)?\\s*|```$/g, '');\nlet data;\ntry {\n  data = JSON.parse(raw);\n} catch (error) {\n  return [{ json: { error: 'LLM 응답이 올바른 JSON 형식이 아닙니다.', raw } }];\n}\n\nconst settings = $('Settings').first().json;\nconst title = settings.title || '10월 16일 주간 회의';\nconst summary = String(data.summary ?? '').trim() || '회의 요약이 없습니다.';\n\n// 할 일 목록 파싱 및 우선순위/null 처리\nconst rawActions = Array.isArray(data.actions) ? data.actions : [];\nconst actions = rawActions\n  .filter(item => item && String(item.task ?? '').trim())\n  .map(item => {\n    const task = String(item.task).trim();\n\n    // 담당자: 없거나 미정/null이면 null 처리\n    let owner = item.owner ? String(item.owner).trim() : null;\n    if (!owner || owner === '미정' || owner === 'null' || owner === '없음') {\n      owner = null;\n    }\n\n    // 기한: 없거나 미정/null이면 null 처리\n    let due = item.due ? String(item.due).trim() : null;\n    if (!due || due === '미정' || due === 'null' || due === '없음') {\n      due = null;\n    }\n\n    // 우선순위 판별: 오늘까지 -> 높음, 이번주까지 / 기타 -> 보통\n    let priority = '보통';\n    if (due && ['오늘', '금일', '당일', '긴급'].some(w => due.includes(w))) {\n      priority = '높음';\n    }\n\n    return {\n      task,\n      owner,\n      due,\n      priority\n    };\n  });\n\nconst count = actions.length;\nconst route = count > 0 ? '할 일 정리' : '할 일 없음';\n\n// 공유용 정리문 (report_text)\nconst actionLines = actions.map((a, i) => {\n  const ownerStr = a.owner ? a.owner : '담당자 미정';\n  const dueStr = a.due ? a.due : '기한 미정';\n  return `${i + 1}. [${a.priority}] ${a.task} - ${ownerStr} (${dueStr})`;\n});\n\nconst report_text = count > 0\n  ? `${title}\\n${summary}\\n\\n[할 일 목록]\\n${actionLines.join('\\n')}`\n  : `${title}\\n${summary}\\n\\n(등록된 할 일이 없습니다.)`;\n\nreturn [{\n  json: {\n    title,\n    route,\n    count,\n    summary,\n    actions,\n    report_text\n  }\n}];"
+      },
+      "id": "e807b294-2b3d-4f91-f0a7-770e3d8b8b08",
+      "name": "Parse actions & format report",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "f918c305-3c4e-40a2-01b8-881f4e9c9c09",
+      "name": "Send result",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1320,
+        -80
+      ]
+    }
+  ],
+  "pinData": {
+    "Meeting webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "localhost:5678",
+            "content-type": "application/json"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "title": "10월 16일 주간 회의",
+            "notes": "참석: 김민지, 이준호, 박서연. 1) 신규 고객 문의 응답 템플릿을 이준호가 금요일까지 정리한다. 2) 박서연은 다음 주 월요일까지 VPN 장애 보고서를 작성한다. 3) 서버 점검 일정은 김민지가 오늘 중 공지한다. 4) 회의실 예약 규칙 개선은 담당자를 다음 회의에서 정한다. 다음 회의는 10월 23일."
+          }
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Meeting webhook": {
+      "main": [
+        [
+          {
+            "node": "Settings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Sample Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sample Input": {
+      "main": [
+        [
+          {
+            "node": "Settings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Settings": {
+      "main": [
+        [
+          {
+            "node": "Has notes?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has notes?": {
+      "main": [
+        [
+          {
+            "node": "LLM extract attendees & actions",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reject empty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM extract attendees & actions": {
+      "main": [
+        [
+          {
+            "node": "Parse actions & format report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse actions & format report": {
+      "main": [
+        [
+          {
+            "node": "Send result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "id": "66-agy-meeting-classifier"
+}

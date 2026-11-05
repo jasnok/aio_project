@@ -1,0 +1,607 @@
+{
+  "name": "Rock Paper Scissors · 가위바위보",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "rock-paper-scissors",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "f1109541-f817-4c5f-b646-d4ef04182ed0",
+      "name": "RPS webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "3d5f66bb-2680-4f3d-85da-2cd6cccfdb70"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "de5de5c8-2f12-4e57-87b1-7a9db6a58201",
+              "leftValue": "={{ $json.body !== null && typeof $json.body === 'object' && !Array.isArray($json.body) && Object.keys($json.body).includes('choice') && typeof $json.body.choice === 'string' }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "347500d1-3171-423b-b2f1-5c1f7a1e5aa7",
+      "name": "String choice?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        240,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a543441e-b712-4fdf-937f-fe3d8356f198",
+              "name": "choice",
+              "value": "={{ $json.body.choice.trim().toUpperCase() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": false,
+        "options": {}
+      },
+      "id": "ac8c0d9c-db0e-4c28-8c94-e587548376c0",
+      "name": "Normalize choice",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        480,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8760e24a-5b52-41ef-8812-b22bf31f0b8c",
+              "leftValue": "={{ ['바위', '보', '가위', 'R', 'P', 'S'].includes($json.choice) }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "1167b9d9-ef03-497c-90e9-b69312fa8fef",
+      "name": "Allowed choice?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        720,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "83ff3806-cdd9-496a-a08f-6822c3a00fdc",
+              "name": "userChoice",
+              "value": "={{ ['R', 'P', 'S'].includes($json.choice) ? ['바위', '보', '가위'][['R', 'P', 'S'].indexOf($json.choice)] : $json.choice }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": false,
+        "options": {}
+      },
+      "id": "1075a291-b4f2-45c8-a52e-2e100603afa3",
+      "name": "User choice",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        960,
+        -200
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1ad53c42-d441-4237-8780-429afeda43b0",
+              "name": "computerChoice",
+              "value": "={{ ['바위', '보', '가위'][Math.floor(Math.random() * 3)] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "c684c7d0-cb2d-4a15-bbd0-de079d921856",
+      "name": "Computer choice",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1200,
+        -200
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f07c8aec-1bbc-45a5-a920-325c1822f105",
+              "leftValue": "={{ $json.userChoice === $json.computerChoice }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "eb0953ad-78b6-44d6-9bf9-71d3fbf152b6",
+      "name": "Draw?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1440,
+        -200
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "01bbb36e-45bf-4fd4-a6a3-09694e4e34f4",
+              "name": "result",
+              "value": "무승부",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "e9440aac-0ea5-4029-8a47-794ef640a2e2",
+      "name": "Draw",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1920,
+        -400
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b263abf1-1901-43e2-8563-287761c28c5b",
+              "leftValue": "={{ ($json.userChoice === '바위' && $json.computerChoice === '가위') || ($json.userChoice === '보' && $json.computerChoice === '바위') || ($json.userChoice === '가위' && $json.computerChoice === '보') }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "bca9f0bf-6bdd-463e-a596-202d18d0e741",
+      "name": "User wins?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1680,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d3e2d33c-7bf7-45ad-8c54-bc24d4ce6a83",
+              "name": "result",
+              "value": "사용자 승리",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "b15adfad-5cf0-4211-a1c3-73a4c58802dc",
+      "name": "User wins",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1920,
+        -200
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bd076a70-e469-4f70-83fa-31d9ff2fb074",
+              "name": "result",
+              "value": "컴퓨터 승리",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "738a791c-ed31-4775-ad77-6cd37e7c5c3b",
+      "name": "Computer wins",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1920,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3f32055e-ae9f-4d9e-9a84-3e60ed19efcd",
+              "name": "ok",
+              "value": true,
+              "type": "boolean"
+            },
+            {
+              "id": "6df3dff8-a7ce-4747-9363-bc5cf4f5e2e0",
+              "name": "userChoice",
+              "value": "={{ $json.userChoice }}",
+              "type": "string"
+            },
+            {
+              "id": "4da96cf1-3261-4108-99f6-767a05bc1206",
+              "name": "computerChoice",
+              "value": "={{ $json.computerChoice }}",
+              "type": "string"
+            },
+            {
+              "id": "eb2a938a-00b6-4df5-b6e1-a77cf5498349",
+              "name": "result",
+              "value": "={{ $json.result }}",
+              "type": "string"
+            },
+            {
+              "id": "ade1ffa7-968a-4b2f-a94c-9adab73b81f7",
+              "name": "message",
+              "value": "={{ '사용자: ' + $json.userChoice + ', 컴퓨터: ' + $json.computerChoice + ' — ' + $json.result + '!' }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": false,
+        "options": {}
+      },
+      "id": "6a85c7f4-9c9d-4ac3-95f1-a7d7771ccfd9",
+      "name": "Build response",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2160,
+        -200
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "af408a51-5f87-4dde-a3b9-0c0a3dc54dc8",
+      "name": "Respond 200",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        2400,
+        -200
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "06ede48f-f9af-444b-8769-95616bc7f2ae",
+              "name": "ok",
+              "value": false,
+              "type": "boolean"
+            },
+            {
+              "id": "7378248f-4fba-4ea8-b839-e64779259b78",
+              "name": "error",
+              "value": "INVALID_CHOICE",
+              "type": "string"
+            },
+            {
+              "id": "fe20c639-9735-431f-aba4-b4ba2f3a6e1c",
+              "name": "message",
+              "value": "바위, 보, 가위 또는 R, P, S 중 하나를 입력하세요.",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": false,
+        "options": {}
+      },
+      "id": "aa84707f-e920-4c22-844f-f3d52efdda2e",
+      "name": "Invalid choice",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        960,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "id": "b94d8cf9-b5ce-43fd-a7a1-3118c05b3bd8",
+      "name": "Respond 400",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1200,
+        240
+      ]
+    }
+  ],
+  "connections": {
+    "RPS webhook": {
+      "main": [
+        [
+          {
+            "node": "String choice?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "String choice?": {
+      "main": [
+        [
+          {
+            "node": "Normalize choice",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Invalid choice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize choice": {
+      "main": [
+        [
+          {
+            "node": "Allowed choice?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Allowed choice?": {
+      "main": [
+        [
+          {
+            "node": "User choice",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Invalid choice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "User choice": {
+      "main": [
+        [
+          {
+            "node": "Computer choice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Computer choice": {
+      "main": [
+        [
+          {
+            "node": "Draw?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Draw?": {
+      "main": [
+        [
+          {
+            "node": "Draw",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "User wins?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "User wins?": {
+      "main": [
+        [
+          {
+            "node": "User wins",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Computer wins",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Draw": {
+      "main": [
+        [
+          {
+            "node": "Build response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "User wins": {
+      "main": [
+        [
+          {
+            "node": "Build response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Computer wins": {
+      "main": [
+        [
+          {
+            "node": "Build response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build response": {
+      "main": [
+        [
+          {
+            "node": "Respond 200",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Invalid choice": {
+      "main": [
+        [
+          {
+            "node": "Respond 400",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "id": "b4a7771e-9ffb-449f-8777-f64192e339de"
+}

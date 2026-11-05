@@ -1,0 +1,46 @@
+{
+  "01_프로젝트_기획서_원문.md": {
+    "bytes": 3296,
+    "sha256": "6efcc4a7052d05d715d73d88bcc8efe70d07fa243cefbce93eaf5378aca495f3"
+  },
+  "02_MVP_설계서.md": {
+    "bytes": 20829,
+    "sha256": "b303ee09d2a9457cf4411f466f79048607e7705f6adfa64b687c1e4c11f2de99"
+  },
+  "build_pdf.py": {
+    "bytes": 8716,
+    "sha256": "ba93adbc41e481756ff1ca70ad90d86c94ccbf98b999ef6d07d19bcbe52c74a1"
+  },
+  "data_contract.md": {
+    "bytes": 4580,
+    "sha256": "00c05603eb51feba90fc630cbe67a1b93929ff88e824f76a7312568e8cf38e16"
+  },
+  "example_package.json": {
+    "bytes": 3789,
+    "sha256": "66d466bd02230cfaaab1b0969c658db86ed55f40ebde3f40e9302633fb032bad"
+  },
+  "models.py": {
+    "bytes": 9723,
+    "sha256": "9e1f8f70b52974a0d2d162650a1432df3334c1c8bd3d2af37c6e042dc1a4f996"
+  },
+  "package.schema.json": {
+    "bytes": 12520,
+    "sha256": "79cffeae57b48ad95864a0483068d78ebafa81c4ff55d96365a37ebb4b287789"
+  },
+  "README.md": {
+    "bytes": 3865,
+    "sha256": "7cab62ca25a8076ab22664d3d11b5f9d282f259672f7742529798482f9ab66f4"
+  },
+  "verify_contract.py": {
+    "bytes": 4403,
+    "sha256": "dc950facb7034bb535002b9568b81a7fdf021c9352ca0b03eb46e5cedd5c255d"
+  },
+  "workflow.mmd": {
+    "bytes": 892,
+    "sha256": "ca9c877dfdc4a741b2f84e375dd6519085b926fbaf5953b87dac3866164f4457"
+  },
+  "SongPilot_AI_프로젝트_기획서_1페이지.pdf": {
+    "bytes": 105684,
+    "sha256": "fade3b465658e708dc7372c1fa598db97c82ece521d311ea7e1b5de8b6d42ee2"
+  }
+}

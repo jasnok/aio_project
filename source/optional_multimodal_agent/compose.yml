@@ -1,0 +1,69 @@
+name: optional-multimodal-agent
+
+services:
+  mcp-server:
+    build:
+      context: .
+      dockerfile: mcp_server/Dockerfile
+    env_file:
+      - mcp_server/.env.docker
+    ports:
+      - "8020:8020"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - multimodal-media:/app/storage
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    env_file:
+      - backend/.env.docker
+    ports:
+      - "8000:8000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - multimodal-media:/app/storage
+    depends_on:
+      - mcp-server
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+    restart: unless-stopped
+
+  worker:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    command: ["python", "-m", "backend.workers.agent_worker"]
+    env_file:
+      - backend/.env.docker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - multimodal-media:/app/storage
+    depends_on:
+      - mcp-server
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    env_file:
+      - frontend/.env.docker
+    ports:
+      - "8501:8501"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  multimodal-media:

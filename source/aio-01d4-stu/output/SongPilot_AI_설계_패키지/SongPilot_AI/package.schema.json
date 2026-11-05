@@ -1,0 +1,557 @@
+{
+  "$defs": {
+    "Approval": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "approved",
+            "rejected"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "reviewer": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "pattern": "\\S",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reviewer"
+        },
+        "decided_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Decided At"
+        },
+        "approved_revision": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Approved Revision"
+        }
+      },
+      "title": "Approval",
+      "type": "object"
+    },
+    "CampaignRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "purpose": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Purpose",
+          "type": "string"
+        },
+        "audience": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Audience",
+          "type": "string"
+        },
+        "channel": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Channel",
+          "type": "string"
+        },
+        "target_duration_seconds": {
+          "default": 30,
+          "maximum": 180,
+          "minimum": 5,
+          "title": "Target Duration Seconds",
+          "type": "integer"
+        },
+        "language": {
+          "default": "ko",
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Language",
+          "type": "string"
+        },
+        "tone": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Tone",
+          "type": "array"
+        },
+        "required_messages": {
+          "items": {
+            "$ref": "#/$defs/RequiredMessage"
+          },
+          "title": "Required Messages",
+          "type": "array"
+        },
+        "required_phrases": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Required Phrases",
+          "type": "array"
+        },
+        "forbidden_terms": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Forbidden Terms",
+          "type": "array"
+        },
+        "expression_guidelines": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Expression Guidelines",
+          "type": "array"
+        }
+      },
+      "required": [
+        "purpose",
+        "audience",
+        "channel",
+        "tone"
+      ],
+      "title": "CampaignRequest",
+      "type": "object"
+    },
+    "ContentPlan": {
+      "additionalProperties": false,
+      "properties": {
+        "target_summary": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Target Summary",
+          "type": "string"
+        },
+        "concept": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Concept",
+          "type": "string"
+        },
+        "sections": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Sections",
+          "type": "array"
+        },
+        "message_ids": {
+          "items": {
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "title": "Message Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "target_summary",
+        "concept",
+        "sections"
+      ],
+      "title": "ContentPlan",
+      "type": "object"
+    },
+    "HistoryEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "node": {
+          "enum": [
+            "intake",
+            "plan",
+            "copy",
+            "style",
+            "review",
+            "repair",
+            "approval",
+            "export"
+          ],
+          "title": "Node",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "started",
+            "succeeded",
+            "failed",
+            "waiting",
+            "skipped"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "revision": {
+          "minimum": 1,
+          "title": "Revision",
+          "type": "integer"
+        },
+        "reason": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Reason",
+          "type": "string"
+        },
+        "recorded_at": {
+          "format": "date-time",
+          "title": "Recorded At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "node",
+        "status",
+        "revision",
+        "reason",
+        "recorded_at"
+      ],
+      "title": "HistoryEvent",
+      "type": "object"
+    },
+    "MusicStyle": {
+      "additionalProperties": false,
+      "properties": {
+        "prompt": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Prompt",
+          "type": "string"
+        },
+        "bpm": {
+          "maximum": 220,
+          "minimum": 40,
+          "title": "Bpm",
+          "type": "integer"
+        },
+        "target_duration_seconds": {
+          "maximum": 180,
+          "minimum": 5,
+          "title": "Target Duration Seconds",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "prompt",
+        "bpm",
+        "target_duration_seconds"
+      ],
+      "title": "MusicStyle",
+      "type": "object"
+    },
+    "RequiredMessage": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Id",
+          "type": "string"
+        },
+        "text": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "text"
+      ],
+      "title": "RequiredMessage",
+      "type": "object"
+    },
+    "ReviewCheck": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "deterministic",
+            "semantic",
+            "estimate",
+            "human"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "pass",
+            "fail",
+            "uncertain",
+            "not_run"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "evidence": {
+          "default": "",
+          "title": "Evidence",
+          "type": "string"
+        },
+        "message": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Message",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "status",
+        "message"
+      ],
+      "title": "ReviewCheck",
+      "type": "object"
+    },
+    "ReviewReport": {
+      "additionalProperties": false,
+      "properties": {
+        "content_revision": {
+          "minimum": 1,
+          "title": "Content Revision",
+          "type": "integer"
+        },
+        "checks": {
+          "items": {
+            "$ref": "#/$defs/ReviewCheck"
+          },
+          "minItems": 1,
+          "title": "Checks",
+          "type": "array"
+        },
+        "duration_verified": {
+          "const": false,
+          "default": false,
+          "title": "Duration Verified",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "content_revision",
+        "checks"
+      ],
+      "title": "ReviewReport",
+      "type": "object"
+    },
+    "RunError": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Code",
+          "type": "string"
+        },
+        "node": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Node",
+          "type": "string"
+        },
+        "message": {
+          "minLength": 1,
+          "pattern": "\\S",
+          "title": "Message",
+          "type": "string"
+        },
+        "retryable": {
+          "title": "Retryable",
+          "type": "boolean"
+        },
+        "attempt": {
+          "minimum": 1,
+          "title": "Attempt",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "code",
+        "node",
+        "message",
+        "retryable",
+        "attempt"
+      ],
+      "title": "RunError",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "project": {
+      "const": "SongPilot AI",
+      "default": "SongPilot AI",
+      "title": "Project",
+      "type": "string"
+    },
+    "run_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{2,79}$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "revision": {
+      "default": 1,
+      "minimum": 1,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "running",
+        "needs_input",
+        "awaiting_approval",
+        "approved",
+        "failed"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "execution_mode": {
+      "enum": [
+        "design_example",
+        "mock",
+        "llm"
+      ],
+      "title": "Execution Mode",
+      "type": "string"
+    },
+    "request": {
+      "$ref": "#/$defs/CampaignRequest"
+    },
+    "plan": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ContentPlan"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "lyrics": {
+      "anyOf": [
+        {
+          "minLength": 1,
+          "pattern": "\\S",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Lyrics"
+    },
+    "style": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/MusicStyle"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "review": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ReviewReport"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "approval": {
+      "$ref": "#/$defs/Approval"
+    },
+    "history": {
+      "items": {
+        "$ref": "#/$defs/HistoryEvent"
+      },
+      "title": "History",
+      "type": "array"
+    },
+    "errors": {
+      "items": {
+        "$ref": "#/$defs/RunError"
+      },
+      "title": "Errors",
+      "type": "array"
+    },
+    "max_revision_attempts": {
+      "const": 2,
+      "default": 2,
+      "title": "Max Revision Attempts",
+      "type": "integer"
+    },
+    "revision_attempts": {
+      "default": 0,
+      "maximum": 2,
+      "minimum": 0,
+      "title": "Revision Attempts",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "run_id",
+    "status",
+    "execution_mode",
+    "request"
+  ],
+  "title": "ProductionPackage",
+  "type": "object"
+}

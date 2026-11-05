@@ -1,0 +1,4 @@
+-r app/tour/requirements.txt
+-r app/weather/requirements.txt
+-r backend/requirements.txt
+-r frontend/requirements.txt

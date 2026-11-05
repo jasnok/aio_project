@@ -1,0 +1,21 @@
+.env
+# Local secrets
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Python environments and generated files
+.venv/
+venv/
+__pycache__/
+*$py.class
+
+# Test, type-checker, and coverage caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/

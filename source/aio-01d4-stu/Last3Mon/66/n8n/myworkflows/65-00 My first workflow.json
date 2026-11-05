@@ -1,0 +1,286 @@
+{
+  "name": "65-00 My first workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "df611d4d-7814-4bdc-9b42-e87415f543dc",
+      "name": "Start"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ee071749-00c1-4895-a40f-d88a7090d245",
+              "name": "user",
+              "value": "Kim",
+              "type": "string"
+            },
+            {
+              "id": "62b50745-47b1-490b-ad58-491fbfd31dbe",
+              "name": "text",
+              "value": "긴급! VPN이 끊겼어요",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "db243886-64aa-4f85-a984-274a2f4dc4e2",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "c2d799b3-f05d-44fe-860e-2ae4d5d7ec90",
+              "leftValue": "={{ $json.text }}",
+              "rightValue": "긴급",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        448,
+        0
+      ],
+      "id": "f506c4d5-3fa0-434b-98a5-88dceda6a54e",
+      "name": "Is urgent?"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "277f7aa9-1974-4f5d-983b-fa2f51eef47c",
+              "name": "route",
+              "value": "즉시 담당자 연결",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        672,
+        -96
+      ],
+      "id": "08a92169-d414-4085-92c0-271fa85cb9eb",
+      "name": "Urgent route"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9e60cb0e-b60d-43cb-952e-0dd12436ba49",
+              "name": "route",
+              "value": "일반 접수",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        672,
+        96
+      ],
+      "id": "e22ed5a8-60af-4977-b891-46aa65152640",
+      "name": "Normal route"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "my-first-route",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        240
+      ],
+      "id": "635c6a48-09c5-47a3-b2ba-001e7ba921b4",
+      "name": "Request webhook",
+      "webhookId": "83063512-3801-415d-aee1-1ab428478c8f"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c0044115-9c4c-4727-b530-08d95e44aa6f",
+              "name": "user",
+              "value": "={{ $json.body.user }}",
+              "type": "string"
+            },
+            {
+              "id": "e6c6066b-0cb7-4c6f-91c6-ae05d3182167",
+              "name": "text",
+              "value": "={{ $json.body.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        224,
+        240
+      ],
+      "id": "aba31d32-0dd9-48f1-8672-f40cbca6bff3",
+      "name": "Read request"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        880,
+        0
+      ],
+      "id": "49eced13-1232-4a92-9bff-b5d95b3b0032",
+      "name": "Send result"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Is urgent?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is urgent?": {
+      "main": [
+        [
+          {
+            "node": "Urgent route",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Normal route",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Request webhook": {
+      "main": [
+        [
+          {
+            "node": "Read request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read request": {
+      "main": [
+        [
+          {
+            "node": "Is urgent?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normal route": {
+      "main": [
+        [
+          {
+            "node": "Send result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Urgent route": {
+      "main": [
+        [
+          {
+            "node": "Send result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "b09b2432-7026-4198-9d41-c562c8ec267a",
+  "meta": {
+    "instanceId": "fb9de54df549a8cbdcfd08565654eb825dd2800c56afc116626aebef2eb54cc0"
+  },
+  "nodeGroups": [],
+  "id": "vUQBQuacauj2ZZ1r",
+  "tags": []
+}

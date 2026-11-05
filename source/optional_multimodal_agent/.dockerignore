@@ -1,0 +1,15 @@
+.git
+.github
+.venv
+**/.venv
+**/__pycache__
+**/.pytest_cache
+*.pyc
+.env
+**/.env
+**/.env.docker
+storage
+tests
+data
+sql
+scripts

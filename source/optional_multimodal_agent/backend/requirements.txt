@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+python-multipart
+openai
+mcp>=1.27,<2
+redis
+httpx
+python-dotenv
+pydantic
+Pillow
+
+# tests
+pytest
+fakeredis

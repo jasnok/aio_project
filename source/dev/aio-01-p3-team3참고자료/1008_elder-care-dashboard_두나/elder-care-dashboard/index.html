@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>온기케어 | 보호자 대시보드</title>
+  <style>
+    :root {
+      --ink: #17201e;
+      --muted: #68736f;
+      --paper: #f4f2eb;
+      --surface: #fffef9;
+      --line: #dddcd3;
+      --green: #176b51;
+      --green-soft: #dcece5;
+      --amber: #ad651f;
+      --amber-soft: #f6e7d3;
+      --red: #b33e35;
+      --red-soft: #f4dedb;
+      --navy: #1d3439;
+      --shadow: 0 16px 38px rgba(23, 32, 30, .08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(23, 107, 81, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 107, 81, .035) 1px, transparent 1px),
+        var(--paper);
+      background-size: 28px 28px;
+      font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", sans-serif;
+    }
+
+    button { font: inherit; }
+
+    .app-shell {
+      max-width: 1500px;
+      min-height: 100vh;
+      margin: auto;
+      padding: 24px 30px 36px;
+    }
+
+    .care-layout {
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .resident-sidebar {
+      position: sticky;
+      top: 18px;
+      padding: 17px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .sidebar-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .sidebar-head h2 { font-size: 16px; }
+    .resident-count {
+      padding: 5px 8px;
+      color: var(--green);
+      background: var(--green-soft);
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .resident-filter {
+      width: 100%;
+      height: 38px;
+      margin-bottom: 12px;
+      padding: 0 12px;
+      color: var(--ink);
+      background: #f3f1e9;
+      border: 1px solid transparent;
+      border-radius: 11px;
+      outline: 0;
+    }
+    .resident-filter:focus { border-color: var(--green); background: white; }
+    .resident-list { display: grid; gap: 8px; }
+
+    .resident-tab {
+      display: grid;
+      grid-template-columns: 38px 1fr auto;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 62px;
+      padding: 9px;
+      color: var(--ink);
+      text-align: left;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 13px;
+      cursor: pointer;
+      transition: background .18s, border-color .18s, transform .18s;
+    }
+    .resident-tab:hover { background: #f5f3ec; transform: translateX(2px); }
+    .resident-tab.active { background: var(--green-soft); border-color: #b8d4c8; }
+    .resident-avatar { display: grid; width: 38px; height: 38px; place-items: center; background: #ede5d9; border-radius: 12px; font-size: 20px; }
+    .resident-info strong { display: block; margin-bottom: 4px; font-size: 12px; }
+    .resident-info span { display: block; color: var(--muted); font-size: 10px; }
+    .resident-state { width: 9px; height: 9px; background: #2d9c6b; border-radius: 50%; box-shadow: 0 0 0 3px #dcece5; }
+    .resident-state.warning { background: var(--amber); box-shadow: 0 0 0 3px var(--amber-soft); }
+    .resident-state.danger { background: var(--red); box-shadow: 0 0 0 3px var(--red-soft); }
+    .resident-state.offline { background: #89918e; box-shadow: 0 0 0 3px #e4e6e5; }
+    .sidebar-legend { margin-top: 14px; padding-top: 13px; border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; line-height: 1.8; }
+    .care-content { min-width: 0; }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .brand { display: flex; align-items: center; gap: 13px; }
+    .brand-mark {
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      color: white;
+      background: var(--green);
+      border-radius: 14px 14px 14px 4px;
+      font-size: 22px;
+      box-shadow: 0 9px 20px rgba(23, 107, 81, .22);
+    }
+
+    h1, h2, h3, p { margin: 0; }
+    h1 { font-family: Georgia, "Noto Serif KR", serif; font-size: 25px; letter-spacing: -.4px; }
+    .eyebrow { margin-bottom: 3px; color: var(--green); font-size: 11px; font-weight: 800; letter-spacing: 1.5px; }
+    .header-actions { display: flex; align-items: center; gap: 9px; }
+
+    .connection, .profile-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 40px;
+      padding: 0 13px;
+      border: 1px solid var(--line);
+      background: rgba(255, 254, 249, .78);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .dot { width: 8px; height: 8px; background: #2d9c6b; border-radius: 50%; box-shadow: 0 0 0 4px #dcece5; }
+
+    .subject-banner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 20px;
+      padding: 22px 24px;
+      color: white;
+      background: var(--navy);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .person { display: flex; align-items: center; gap: 15px; }
+    .avatar {
+      display: grid;
+      width: 58px;
+      height: 58px;
+      place-items: center;
+      background: #f5d8ba;
+      border: 3px solid rgba(255,255,255,.25);
+      border-radius: 18px;
+      font-size: 28px;
+    }
+    .person h2 { font-size: 21px; margin-bottom: 5px; }
+    .person p { color: #c6d2d0; font-size: 13px; }
+    .banner-status { display: flex; gap: 10px; align-items: center; }
+
+    .status-pill {
+      padding: 8px 12px;
+      color: #c5f2df;
+      background: rgba(51, 178, 127, .16);
+      border: 1px solid rgba(125, 224, 180, .28);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .primary-btn, .secondary-btn, .danger-btn, .ghost-btn {
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 12px;
+      border: 0;
+      cursor: pointer;
+      font-weight: 800;
+      transition: transform .18s, box-shadow .18s, background .18s;
+    }
+    button:hover { transform: translateY(-1px); }
+    button:focus-visible { outline: 3px solid #e0a23a; outline-offset: 2px; }
+    .primary-btn { color: white; background: var(--green); box-shadow: 0 8px 18px rgba(23,107,81,.2); }
+    .secondary-btn { color: var(--green); background: var(--green-soft); }
+    .danger-btn { color: white; background: var(--red); box-shadow: 0 8px 18px rgba(179,62,53,.2); }
+    .ghost-btn { color: var(--ink); background: #eeece4; }
+
+    .progress-line {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 14px 0 20px;
+      padding: 13px 17px;
+      border: 1px solid var(--line);
+      background: rgba(255,254,249,.75);
+      border-radius: 14px;
+      font-size: 13px;
+    }
+
+    .location-panel {
+      display: grid;
+      grid-template-columns: minmax(260px, .8fr) 1.2fr;
+      gap: 16px;
+      margin-bottom: 18px;
+      padding: 18px;
+      background: var(--surface);
+      border: 1px solid #d6c89f;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+    .location-panel[hidden] { display: none; }
+    .location-copy { display: flex; flex-direction: column; justify-content: center; }
+    .location-label { display: inline-flex; align-items: center; gap: 7px; width: fit-content; margin-bottom: 11px; padding: 6px 9px; color: #744314; background: var(--amber-soft); border-radius: 8px; font-size: 11px; font-weight: 900; }
+    .location-copy h3 { margin-bottom: 6px; font-size: 18px; }
+    .location-copy p { color: var(--muted); font-size: 12px; line-height: 1.6; }
+    .location-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+    .location-meta div { padding: 10px; background: #f3f1e9; border-radius: 10px; }
+    .location-meta span { display: block; margin-bottom: 4px; color: var(--muted); font-size: 9px; font-weight: 800; }
+    .location-meta strong { font-size: 12px; }
+    .map-box { position: relative; min-height: 190px; overflow: hidden; background: #e9e4d6; border-radius: 15px; }
+    .map-road, .map-road::before, .map-road::after { position: absolute; content: ""; background: #fffef9; border: 1px solid #d9d4c6; }
+    .map-road { left: -10%; top: 44%; width: 120%; height: 24px; transform: rotate(-9deg); }
+    .map-road::before { left: 45%; top: -120px; width: 20px; height: 270px; transform: rotate(32deg); }
+    .map-road::after { left: 17%; top: -100px; width: 15px; height: 230px; transform: rotate(-28deg); }
+    .safe-zone { position: absolute; left: 43%; top: 44%; width: 112px; height: 112px; border: 2px dashed var(--green); background: rgba(23,107,81,.10); border-radius: 50%; transform: translate(-50%, -50%); }
+    .gps-pin { position: absolute; left: 46%; top: 43%; display: grid; width: 38px; height: 38px; place-items: center; color: white; background: var(--red); border: 4px solid white; border-radius: 50% 50% 50% 8px; box-shadow: 0 7px 16px rgba(0,0,0,.2); transform: translate(-50%, -50%) rotate(-45deg); }
+    .gps-pin span { transform: rotate(45deg); font-size: 13px; }
+    .map-label { position: absolute; padding: 5px 7px; color: #51605c; background: rgba(255,255,255,.9); border-radius: 6px; font-size: 9px; font-weight: 800; }
+    .home-label { left: 57%; top: 31%; }
+    .center-label { left: 16%; bottom: 17%; }
+    .map-privacy { position: absolute; right: 9px; bottom: 8px; color: #68736f; font-size: 8px; }
+    .progress-label { color: var(--muted); font-weight: 800; }
+    .progress-copy { flex: 1; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .live-pulse { width: 9px; height: 9px; background: #2d9c6b; border-radius: 50%; animation: pulse 1.8s infinite; }
+    @keyframes pulse { 0%,100% { opacity: .35; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.15); } }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(340px, .8fr);
+      gap: 18px;
+    }
+    .main-column, .side-column { display: grid; gap: 18px; align-content: start; }
+
+    .panel {
+      padding: 21px;
+      background: var(--surface);
+      border: 1px solid rgba(221,220,211,.9);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+    .panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 17px; }
+    .panel-head h3 { font-size: 17px; margin-bottom: 4px; }
+    .panel-head p { color: var(--muted); font-size: 12px; }
+    .tag { padding: 6px 9px; color: var(--green); background: var(--green-soft); border-radius: 8px; font-size: 11px; font-weight: 800; }
+
+    .vital-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 11px; }
+    .metric {
+      min-height: 122px;
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: #faf9f4;
+    }
+    .metric-top { display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; font-weight: 700; }
+    .metric-icon { font-size: 17px; }
+    .metric-value { margin-top: 20px; font-family: Georgia, serif; font-size: 32px; line-height: 1; }
+    .metric-unit { margin-left: 3px; color: var(--muted); font-family: inherit; font-size: 12px; }
+    .metric-note { margin-top: 9px; color: var(--green); font-size: 11px; font-weight: 800; }
+    .metric.alert { background: var(--red-soft); border-color: #e0aaa4; }
+    .metric.alert .metric-note { color: var(--red); }
+
+    .home-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 14px; }
+    .camera {
+      position: relative;
+      min-height: 260px;
+      overflow: hidden;
+      color: white;
+      background: #263337;
+      border-radius: 16px;
+    }
+    .camera::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .35;
+      background: repeating-linear-gradient(0deg, transparent 0 5px, rgba(255,255,255,.04) 5px 6px);
+    }
+    .room-scene { position: absolute; inset: 48px 28px 26px; border: 2px solid rgba(255,255,255,.15); border-top: 0; }
+    .window { position: absolute; left: 32px; top: 32px; width: 90px; height: 72px; border: 5px solid #68797c; background: #a9c4c5; }
+    .sofa { position: absolute; left: 38px; bottom: 25px; width: 150px; height: 55px; background: #916d55; border-radius: 13px 13px 5px 5px; }
+    .person-shape { position: absolute; right: 70px; bottom: 24px; width: 42px; height: 90px; background: #d7b28d; border-radius: 20px 20px 8px 8px; transform: rotate(8deg); }
+    .camera-label { position: absolute; top: 14px; left: 15px; display: flex; gap: 7px; align-items: center; font-size: 11px; font-weight: 800; }
+    .rec { width: 8px; height: 8px; background: #ee6256; border-radius: 50%; }
+    .camera-time { position: absolute; right: 15px; top: 14px; font: 11px monospace; }
+    .camera-caption { position: absolute; left: 15px; bottom: 13px; color: #d7e0df; font-size: 11px; }
+
+    .device-list { display: grid; gap: 10px; }
+    .device {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    .device-symbol { display: grid; width: 38px; height: 38px; place-items: center; background: #efede6; border-radius: 11px; font-size: 18px; }
+    .device-copy { flex: 1; }
+    .device-copy strong { display: block; font-size: 13px; }
+    .device-copy span { color: var(--muted); font-size: 11px; }
+    .switch { width: 38px; height: 22px; padding: 3px; background: #c9cbc5; border-radius: 999px; }
+    .switch::after { content: ""; display: block; width: 16px; height: 16px; background: white; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,.2); }
+    .switch.on { background: var(--green); }
+    .switch.on::after { margin-left: 16px; }
+
+    .environment { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+    .env-card { padding: 15px; background: #f0eee7; border-radius: 14px; }
+    .env-card span { color: var(--muted); font-size: 11px; font-weight: 700; }
+    .env-card strong { display: block; margin-top: 8px; font-family: Georgia, serif; font-size: 27px; }
+
+    .alert-card { border-color: #e0aaa4; background: #fffaf8; }
+    .alert-title { display: flex; gap: 12px; align-items: center; }
+    .alert-symbol { display: grid; width: 42px; height: 42px; place-items: center; color: white; background: var(--red); border-radius: 13px; font-size: 20px; }
+    .severity { padding: 6px 9px; color: var(--red); background: var(--red-soft); border-radius: 8px; font-size: 11px; font-weight: 900; }
+    .alert-summary { margin: 15px 0; padding: 14px; color: #532a27; background: var(--red-soft); border-radius: 12px; font-size: 13px; line-height: 1.6; }
+    .evidence { display: grid; gap: 8px; margin-bottom: 16px; }
+    .evidence-row { display: flex; justify-content: space-between; gap: 15px; padding-bottom: 8px; border-bottom: 1px dashed var(--line); font-size: 12px; }
+    .evidence-row span { color: var(--muted); }
+    .approval-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+    .approval-actions .danger-btn { grid-column: 1 / -1; }
+
+    .agent-list { display: grid; gap: 10px; }
+    .agent-row { display: grid; grid-template-columns: 29px 1fr auto; align-items: center; gap: 10px; font-size: 12px; }
+    .agent-number { display: grid; width: 29px; height: 29px; place-items: center; color: var(--green); background: var(--green-soft); border-radius: 9px; font-weight: 900; }
+    .agent-name strong { display: block; }
+    .agent-name span { color: var(--muted); font-size: 10px; }
+    .agent-state { color: var(--green); font-size: 10px; font-weight: 900; }
+
+    .toast {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 10;
+      max-width: 390px;
+      padding: 15px 17px;
+      color: white;
+      background: var(--navy);
+      border-radius: 14px;
+      box-shadow: 0 16px 44px rgba(0,0,0,.22);
+      font-size: 13px;
+      transform: translateY(130%);
+      transition: transform .25s ease;
+    }
+    .toast.show { transform: translateY(0); }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(15, 28, 30, .55);
+      backdrop-filter: blur(4px);
+    }
+    .modal-backdrop.open { display: grid; }
+    .modal { width: min(520px, 100%); padding: 25px; background: var(--surface); border-radius: 22px; box-shadow: 0 24px 80px rgba(0,0,0,.28); }
+    .modal h3 { margin: 14px 0 8px; font-size: 21px; }
+    .modal p { color: var(--muted); font-size: 13px; line-height: 1.6; }
+    .modal-check { margin: 18px 0; padding: 14px; background: var(--amber-soft); border-radius: 12px; color: #744314; font-size: 12px; line-height: 1.6; }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 8px; }
+
+    @media (max-width: 1050px) {
+      .care-layout { grid-template-columns: 210px minmax(0, 1fr); }
+      .dashboard { grid-template-columns: 1fr; }
+      .side-column { grid-template-columns: 1fr 1fr; }
+      .alert-card { grid-row: span 2; }
+    }
+    @media (max-width: 760px) {
+      .app-shell { padding: 16px; }
+      .care-layout { grid-template-columns: 1fr; }
+      .resident-sidebar { position: static; overflow: hidden; padding: 13px; }
+      .resident-list { grid-template-columns: repeat(5, minmax(145px, 1fr)); overflow-x: auto; padding-bottom: 5px; }
+      .resident-tab { min-width: 145px; }
+      .sidebar-legend { display: none; }
+      .location-panel { grid-template-columns: 1fr; }
+      .topbar, .subject-banner { align-items: flex-start; }
+      .header-actions, .banner-status { flex-wrap: wrap; justify-content: flex-end; }
+      .connection { display: none; }
+      .subject-banner { grid-template-columns: 1fr; }
+      .vital-grid { grid-template-columns: 1fr 1fr; }
+      .home-grid, .side-column { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .app-shell { padding: 12px; }
+      .brand h1 { font-size: 20px; }
+      .profile-chip { display: none; }
+      .vital-grid { grid-template-columns: 1fr; }
+      .metric { min-height: 100px; }
+      .metric-value { margin-top: 12px; }
+      .approval-actions { grid-template-columns: 1fr; }
+      .approval-actions .danger-btn { grid-column: auto; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">♡</div>
+        <div><div class="eyebrow">SENIOR SAFETY NETWORK</div><h1>온기케어</h1></div>
+      </div>
+      <div class="header-actions">
+        <div class="connection"><span class="dot"></span> 센서 연결 정상</div>
+        <div class="profile-chip">보호자 · 김지은</div>
+      </div>
+    </header>
+
+    <div class="care-layout">
+      <aside class="resident-sidebar" aria-label="관리 대상자 목록">
+        <div class="sidebar-head"><h2>관리 대상자</h2><span class="resident-count">5명</span></div>
+        <input class="resident-filter" id="residentFilter" type="search" placeholder="이름 검색" aria-label="어르신 이름 검색" />
+        <div class="resident-list" id="residentList">
+          <button class="resident-tab active" data-resident="lee" aria-pressed="true"><span class="resident-avatar">👵</span><span class="resident-info"><strong>이명자</strong><span>81세 · 치매 관리</span></span><span class="resident-state warning" title="주의"></span></button>
+          <button class="resident-tab" data-resident="kim" aria-pressed="false"><span class="resident-avatar">👵</span><span class="resident-info"><strong>김순자</strong><span>78세 · 고혈압</span></span><span class="resident-state" title="안정"></span></button>
+          <button class="resident-tab" data-resident="park" aria-pressed="false"><span class="resident-avatar">👴</span><span class="resident-info"><strong>박영호</strong><span>84세 · 낙상 주의</span></span><span class="resident-state danger" title="긴급"></span></button>
+          <button class="resident-tab" data-resident="choi" aria-pressed="false"><span class="resident-avatar">👵</span><span class="resident-info"><strong>최정자</strong><span>76세 · 당뇨</span></span><span class="resident-state" title="안정"></span></button>
+          <button class="resident-tab" data-resident="jung" aria-pressed="false"><span class="resident-avatar">👴</span><span class="resident-info"><strong>정만수</strong><span>82세 · 센서 점검</span></span><span class="resident-state offline" title="연결 끊김"></span></button>
+        </div>
+        <div class="sidebar-legend">● 안정 &nbsp; <span style="color:#ad651f">● 주의</span> &nbsp; <span style="color:#b33e35">● 긴급</span><br />상태가 변하면 위험 대상자가 목록 위로 이동합니다.</div>
+      </aside>
+
+      <div class="care-content">
+
+    <section class="subject-banner">
+      <div class="person">
+        <div class="avatar" aria-hidden="true">👵</div>
+        <div><h2 id="residentName">이명자 어르신</h2><p id="residentMeta">만 81세 · 서울시 마포구 · 마지막 확인 8초 전</p></div>
+      </div>
+      <div class="banner-status">
+        <span class="status-pill" id="overallStatus">현재 상태 안정</span>
+        <button class="secondary-btn" id="simulateBtn">긴급상황 재현</button>
+      </div>
+    </section>
+
+    <div class="progress-line" aria-live="polite">
+      <span class="live-pulse"></span>
+      <span class="progress-label">처리 과정</span>
+      <span class="progress-copy" id="progressCopy">백엔드 센서 수집 → 에이전트 분석 완료 → 프런트엔드 동기화</span>
+      <span id="progressTime">방금 전</span>
+    </div>
+
+    <section class="location-panel" id="locationPanel" aria-labelledby="locationTitle">
+      <div class="location-copy">
+        <span class="location-label">⌖ 치매 안심 GPS</span>
+        <h3 id="locationTitle">안전구역 안에 있습니다</h3>
+        <p id="locationAddress">서울시 마포구 월드컵로 21길 · 자택에서 약 120m</p>
+        <div class="location-meta">
+          <div><span>마지막 위치 수신</span><strong id="gpsUpdated">8초 전</strong></div>
+          <div><span>GPS 배터리</span><strong id="gpsBattery">82% · 양호</strong></div>
+          <div><span>안전구역</span><strong id="safeZoneText">자택 반경 300m</strong></div>
+          <div><span>이동 상태</span><strong id="movementText">도보 이동 중</strong></div>
+        </div>
+      </div>
+      <div class="map-box" role="img" aria-label="치매 관리 대상자의 모의 GPS 위치 지도">
+        <div class="map-road"></div><div class="safe-zone"></div><div class="gps-pin"><span>●</span></div>
+        <span class="map-label home-label">⌂ 자택</span><span class="map-label center-label">마포 안심센터</span><span class="map-privacy">과제용 가상 위치 · 실제 좌표 아님</span>
+      </div>
+    </section>
+
+    <div class="dashboard">
+      <div class="main-column">
+        <section class="panel">
+          <div class="panel-head">
+            <div><h3>실시간 바이탈 사인</h3><p>Vital Agent · 10초 간격으로 갱신</p></div>
+            <span class="tag">LIVE</span>
+          </div>
+          <div class="vital-grid">
+            <article class="metric" id="heartCard"><div class="metric-top"><span>심박수</span><span class="metric-icon">♥</span></div><div class="metric-value"><span id="heartValue">76</span><span class="metric-unit">bpm</span></div><div class="metric-note" id="heartNote">정상 범위</div></article>
+            <article class="metric" id="oxygenCard"><div class="metric-top"><span>산소포화도</span><span class="metric-icon">◉</span></div><div class="metric-value"><span id="oxygenValue">97</span><span class="metric-unit">%</span></div><div class="metric-note" id="oxygenNote">정상 범위</div></article>
+            <article class="metric"><div class="metric-top"><span>혈압</span><span class="metric-icon">↕</span></div><div class="metric-value">128<span class="metric-unit">/ 78</span></div><div class="metric-note">정상 범위</div></article>
+            <article class="metric"><div class="metric-top"><span>체온</span><span class="metric-icon">♨</span></div><div class="metric-value">36.7<span class="metric-unit">℃</span></div><div class="metric-note">정상 범위</div></article>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div><h3>주거 환경과 CCTV</h3><p>IoT Agent · 영상은 긴급상황에서만 보호자에게 전송</p></div>
+            <button class="ghost-btn" id="captureBtn">현재 화면 캡처</button>
+          </div>
+          <div class="home-grid">
+            <div class="camera" role="img" aria-label="거실 CCTV 모의 화면">
+              <div class="camera-label"><span class="rec"></span> CAM 01 · 거실</div><div class="camera-time" id="cameraTime">20:42:18</div>
+              <div class="room-scene"><div class="window"></div><div class="sofa"></div><div class="person-shape"></div></div>
+              <div class="camera-caption">개인정보 보호 모드 · 외부 저장 안 함</div>
+            </div>
+            <div class="device-list">
+              <div class="environment"><div class="env-card"><span>실내 온도</span><strong id="tempValue">24.2℃</strong></div><div class="env-card"><span>습도</span><strong>48%</strong></div></div>
+              <div class="device"><div class="device-symbol">❄</div><div class="device-copy"><strong>에어컨</strong><span id="airText">꺼짐</span></div><div class="switch" id="airSwitch"></div></div>
+              <div class="device"><div class="device-symbol">♨</div><div class="device-copy"><strong>인덕션</strong><span>안전 · 꺼짐</span></div><div class="switch"></div></div>
+              <div class="device"><div class="device-symbol">⌂</div><div class="device-copy"><strong>현관 센서</strong><span>닫힘 · 정상</span></div><div class="switch on"></div></div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <aside class="side-column">
+        <section class="panel alert-card">
+          <div class="panel-head">
+            <div class="alert-title"><div class="alert-symbol">!</div><div><h3>승인 대기 없음</h3><p id="alertSub">Emergency Agent가 모니터링 중입니다</p></div></div>
+            <span class="severity" id="severity">안정</span>
+          </div>
+          <div class="alert-summary" id="alertSummary">현재 즉시 확인이 필요한 위험 징후는 없습니다. 이상 징후가 감지되면 근거와 함께 보호자 승인을 요청합니다.</div>
+          <div class="evidence">
+            <div class="evidence-row"><span>협력 병원</span><strong id="hospitalName">마포기억안심의원</strong></div>
+            <div class="evidence-row"><span>기저질환</span><strong id="conditionText">경도 인지장애</strong></div>
+            <div class="evidence-row"><span>최근 복약</span><strong>오늘 08:10 확인</strong></div>
+          </div>
+          <div class="approval-actions">
+            <button class="secondary-btn" id="notifyBtn">보호자 알림</button>
+            <button class="ghost-btn" id="retryBtn">툴 실패 재현</button>
+            <button class="danger-btn" id="emergencyBtn">119 신고 승인</button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><div><h3>에이전트 협업 상태</h3><p>필요한 데이터만 툴로 조회합니다</p></div></div>
+          <div class="agent-list">
+            <div class="agent-row"><span class="agent-number">1</span><div class="agent-name"><strong>Supervisor</strong><span>업무 분류 및 결과 통합</span></div><span class="agent-state">대기</span></div>
+            <div class="agent-row"><span class="agent-number">2</span><div class="agent-name"><strong>Vital Agent</strong><span>심박·산소포화도 분석</span></div><span class="agent-state">정상</span></div>
+            <div class="agent-row"><span class="agent-number">3</span><div class="agent-name"><strong>IoT Agent</strong><span>온습도·기기 상태 확인</span></div><span class="agent-state">정상</span></div>
+            <div class="agent-row"><span class="agent-number">4</span><div class="agent-name"><strong>Emergency Agent</strong><span>위험 판단 및 승인 요청</span></div><span class="agent-state">감시 중</span></div>
+          </div>
+        </section>
+      </aside>
+    </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="modal-backdrop" id="approvalModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <span class="severity">보호자 최종 확인</span>
+      <h3 id="modalTitle">119 신고를 승인할까요?</h3>
+      <p>심박수 136bpm, 산소포화도 88%, 실내 온도 34.1℃가 감지되었습니다. 시스템은 실제 신고 대신 과제용 모의 신고를 실행합니다.</p>
+      <div class="modal-check">승인하면 환자 정보, 현재 위치, 바이탈 요약, CCTV 캡처 시각이 신고 기록에 포함됩니다.</div>
+      <div class="modal-actions"><button class="ghost-btn" id="cancelApproval">취소</button><button class="danger-btn" id="confirmApproval">모의 119 신고 승인</button></div>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const residents = {
+      lee: { name: '이명자', age: 81, area: '서울시 마포구', condition: '경도 인지장애', hospital: '마포기억안심의원', heart: 76, oxygen: 97, temp: '24.2℃', state: '주의 관찰', severity: '주의', gps: true, avatar: '👵', alertTitle: '위치 안전 확인 중', alertSub: '안전구역 내 이동 · 8초 전', summary: '치매 안심 GPS가 자택 인근에서 정상 수신되고 있습니다. 안전구역을 벗어나면 보호자에게 즉시 승인을 요청합니다.' },
+      kim: { name: '김순자', age: 78, area: '서울시 마포구', condition: '고혈압', hospital: '마포늘봄병원', heart: 72, oxygen: 98, temp: '23.8℃', state: '현재 상태 안정', severity: '안정', gps: false, avatar: '👵', alertTitle: '승인 대기 없음', alertSub: 'Emergency Agent가 모니터링 중입니다', summary: '현재 즉시 확인이 필요한 위험 징후는 없습니다. 이상 징후가 감지되면 근거와 함께 보호자 승인을 요청합니다.' },
+      park: { name: '박영호', age: 84, area: '서울시 은평구', condition: '낙상 고위험', hospital: '은평성모협력병원', heart: 112, oxygen: 91, temp: '26.9℃', state: '긴급 확인 필요', severity: '위험', gps: false, avatar: '👴', alertTitle: '움직임 이상 감지', alertSub: '낙상 가능성 · 보호자 확인 필요', summary: '거실에서 갑작스러운 움직임 중단이 감지되었습니다. 산소포화도도 주의 범위이므로 CCTV 캡처 확인과 보호자 승인이 필요합니다.' },
+      choi: { name: '최정자', age: 76, area: '서울시 서대문구', condition: '당뇨', hospital: '서대문우리의원', heart: 79, oxygen: 96, temp: '24.6℃', state: '현재 상태 안정', severity: '안정', gps: false, avatar: '👵', alertTitle: '승인 대기 없음', alertSub: 'Emergency Agent가 모니터링 중입니다', summary: '현재 바이탈과 실내 환경이 정상 범위입니다. 오늘 복약 확인은 오전 8시 10분에 완료되었습니다.' },
+      jung: { name: '정만수', age: 82, area: '서울시 용산구', condition: '부정맥', hospital: '용산안심내과', heart: '--', oxygen: '--', temp: '--', state: '센서 연결 확인', severity: '점검', gps: false, avatar: '👴', alertTitle: '센서 연결 끊김', alertSub: '재연결 시도 2/3', summary: '바이탈 센서가 2분 동안 응답하지 않았습니다. 자동 재연결 실패 시 보호자에게 기기 점검 알림을 전송합니다.' }
+    };
+    let activeResident = 'lee';
+    const toast = (message) => {
+      $('toast').textContent = message;
+      $('toast').classList.add('show');
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => $('toast').classList.remove('show'), 3300);
+    };
+    const setProgress = (copy) => {
+      $('progressCopy').textContent = copy;
+      $('progressTime').textContent = '방금 전';
+    };
+    const setAlertMetric = (id, noteId, value, note, alert) => {
+      $(id.replace('Card','Value')).textContent = value;
+      $(noteId).textContent = note;
+      $(id).classList.toggle('alert', alert);
+    };
+
+    const selectResident = (key) => {
+      const person = residents[key];
+      if (!person) return;
+      activeResident = key;
+      document.querySelectorAll('.resident-tab').forEach((tab) => {
+        const selected = tab.dataset.resident === key;
+        tab.classList.toggle('active', selected);
+        tab.setAttribute('aria-pressed', String(selected));
+      });
+      $('residentName').textContent = `${person.name} 어르신`;
+      $('residentMeta').textContent = `만 ${person.age}세 · ${person.area} · 마지막 확인 ${key === 'jung' ? '2분 전' : '8초 전'}`;
+      document.querySelector('.avatar').textContent = person.avatar;
+      $('overallStatus').textContent = person.state;
+      $('overallStatus').removeAttribute('style');
+      $('severity').textContent = person.severity;
+      document.querySelector('.alert-card h3').textContent = person.alertTitle;
+      $('alertSub').textContent = person.alertSub;
+      $('alertSummary').textContent = person.summary;
+      $('hospitalName').textContent = person.hospital;
+      $('conditionText').textContent = person.condition;
+      $('tempValue').textContent = person.temp;
+      const risky = key === 'park';
+      const offline = key === 'jung';
+      setAlertMetric('heartCard', 'heartNote', person.heart, offline ? '센서 응답 없음' : risky ? '주의 · 상승' : '정상 범위', risky || offline);
+      setAlertMetric('oxygenCard', 'oxygenNote', person.oxygen, offline ? '센서 응답 없음' : risky ? '주의 · 확인 필요' : '정상 범위', risky || offline);
+      $('locationPanel').hidden = !person.gps;
+      setProgress(`대상자 선택 → ${person.name} 데이터 조회 → 에이전트 분석 → 프런트엔드 동기화`);
+    };
+
+    document.querySelectorAll('.resident-tab').forEach((tab) => tab.addEventListener('click', () => selectResident(tab.dataset.resident)));
+    $('residentFilter').addEventListener('input', (event) => {
+      const keyword = event.target.value.trim();
+      document.querySelectorAll('.resident-tab').forEach((tab) => {
+        tab.hidden = Boolean(keyword) && !tab.textContent.includes(keyword);
+      });
+    });
+
+    $('simulateBtn').addEventListener('click', () => {
+      setAlertMetric('heartCard', 'heartNote', '136', '위험 · 급격히 상승', true);
+      setAlertMetric('oxygenCard', 'oxygenNote', '88', '위험 · 즉시 확인', true);
+      $('tempValue').textContent = '34.1℃';
+      $('airText').textContent = '켜짐 · 22℃';
+      $('airSwitch').classList.add('on');
+      $('overallStatus').textContent = '긴급 확인 필요';
+      $('overallStatus').style.color = '#ffd8d4';
+      $('overallStatus').style.background = 'rgba(211,73,61,.22)';
+      $('severity').textContent = '위험';
+      $('alertSub').textContent = '보호자 승인 대기 · 00:42';
+      $('alertSummary').textContent = '심박수 상승과 산소포화도 저하가 동시에 감지되었습니다. IoT Agent가 에어컨을 안전 모드로 켰고 CCTV 캡처를 준비했습니다.';
+      document.querySelector('.alert-card h3').textContent = '긴급 대응 승인 요청';
+      setProgress('백엔드 이상 감지 → Vital·IoT 분석 → CCTV 캡처 → 보호자 승인 대기');
+      toast('긴급 상황이 재현되었습니다. 보호자 승인 절차를 확인하세요.');
+    });
+
+    $('captureBtn').addEventListener('click', () => {
+      setProgress('백엔드 CCTV 툴 실행 → 개인정보 보호 캡처 생성 → 프런트엔드 전송 완료');
+      toast('거실 CCTV 화면이 과제용 캡처로 저장되었습니다.');
+    });
+    $('notifyBtn').addEventListener('click', () => {
+      setProgress('백엔드 알림 생성 → 보호자 연락처 확인 → 프런트엔드 알림 전송 완료');
+      toast('김지은 보호자에게 앱 알림을 전송했습니다.');
+    });
+    $('retryBtn').addEventListener('click', () => {
+      let retry = 1;
+      setProgress('CCTV 캡처 실패 → 재시도 1/3');
+      toast('CCTV 툴 응답 지연: 자동 재시도를 시작합니다.');
+      const timer = setInterval(() => {
+        retry += 1;
+        if (retry <= 3) setProgress(`CCTV 캡처 실패 → 재시도 ${retry}/3`);
+        if (retry === 4) {
+          clearInterval(timer);
+          setProgress('CCTV 캡처 3회 실패 → 바이탈·온습도 정보로 대체 → 보호자 알림');
+          toast('최종 실패 처리 완료: 대체 정보로 보호자에게 알렸습니다.');
+        }
+      }, 900);
+    });
+    $('emergencyBtn').addEventListener('click', () => $('approvalModal').classList.add('open'));
+    $('cancelApproval').addEventListener('click', () => $('approvalModal').classList.remove('open'));
+    $('confirmApproval').addEventListener('click', () => {
+      $('approvalModal').classList.remove('open');
+      setProgress('보호자 승인 완료 → 모의 119 신고 툴 실행 → 신고 접수 완료');
+      toast('과제용 모의 119 신고가 완료되었습니다. 실제 신고는 실행되지 않았습니다.');
+    });
+    $('approvalModal').addEventListener('click', (event) => {
+      if (event.target === $('approvalModal')) $('approvalModal').classList.remove('open');
+    });
+    setInterval(() => {
+      $('cameraTime').textContent = new Date().toLocaleTimeString('ko-KR', { hour12: false });
+    }, 1000);
+    selectResident(activeResident);
+  </script>
+</body>
+</html>

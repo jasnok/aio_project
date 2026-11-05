@@ -1,0 +1,20 @@
+[project]
+name = "turl"
+version = "0.1.0"
+description = "A Textual terminal client powered by curl"
+requires-python = ">=3.11"
+dependencies = ["textual>=0.89,<2", "pyyaml>=6,<7"]
+
+[project.scripts]
+turl = "turl.app:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = ["pytest>=8,<9", "pytest-asyncio>=0.24,<1"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

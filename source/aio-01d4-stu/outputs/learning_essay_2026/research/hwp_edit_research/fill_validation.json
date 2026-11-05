@@ -1,0 +1,35 @@
+{
+  "source": "C:\\Users\\Playdata\\Downloads\\1. 2026년 서울시 평생교육이용권 수기 공모전 신청서 및 양식(이용자용).hwp",
+  "output": "C:\\aio-01d4-stu\\outputs\\learning_essay_2026\\최종신청서_원고입력.hwp",
+  "output_size": 129024,
+  "changed_streams": [
+    "BodyText/Section0"
+  ],
+  "original_stream_size": 4245,
+  "new_stream_size": 5555,
+  "paragraph_count": 10,
+  "title_exact_match": true,
+  "body_exact_match": true,
+  "models_parse_success": true,
+  "body_font": "맑은 고딕",
+  "body_pt": 11,
+  "body_character_shape_id": 14,
+  "body_paragraph_shape_id": 23,
+  "body_line_spacing": 160,
+  "title_style": "original centered paragraph and original HY견고딕 12pt character style",
+  "known_fields_filled": {
+    "사용기관명": "코드잇",
+    "강좌명": "7개월 무제한 수강권"
+  },
+  "cached_body_line_count": 38,
+  "untouched_stream_hashes": {
+    "\u0005HwpSummaryInformation": "a9f663d2f942307daa9694d8ea686f1a54b7fe6336ece5e869c63f1c0aec07de",
+    "DocInfo": "d0edb78f19b565373638d1325a9dc126b47cf98bf897cafe01e43205fc9b52ca",
+    "DocOptions/_LinkDoc": "5293744c35b879700c437baf059440ad7198719f2b251b6b0779c3a633df5211",
+    "FileHeader": "cfb806a1fd4ee8680b1d738aea175b8558170136b3089f55994a143aa22a0878",
+    "PrvImage": "d813886e1f9d651f0cbfcceeef900a818095ef9373f47aff3dcf946e7d2c6add",
+    "PrvText": "f59e5a2e7c21ac4a64b75ba531b6c96ddc80352dcf5a623780dacf712e00401d",
+    "Scripts/DefaultJScript": "1b4833c1d5a47fcf6cc76e769cf6b12b27401152387d99dfd313469881bcf590",
+    "Scripts/JScriptVersion": "1322438fbe7c693f50ae634db95d80567379557dea3a970e75d06e63a0e16b55"
+  }
+}

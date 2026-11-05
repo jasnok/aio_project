@@ -1,0 +1,1 @@
+"""Tour MCP server package."""

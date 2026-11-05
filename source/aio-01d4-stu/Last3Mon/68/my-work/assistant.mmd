@@ -1,0 +1,54 @@
+flowchart TD
+  n0["Assistant webhook"]
+  n1["Has message#63;"]
+  n2["Split tasks"]
+  n3["OpenAI chat model"]
+  n4["Parse and validate tasks"]
+  n5["Reject empty message"]
+  n6["Send result"]
+  n7["Has tasks#63;"]
+  n8["Empty result"]
+  n9["One item per task"]
+  n10["Route by type"]
+  n11["Call IT agent"]
+  n12["Call meeting agent"]
+  n13["IT result"]
+  n14["Meeting result"]
+  n15["Other result"]
+  n16["Collect results"]
+  n17["All results"]
+  n18["Build reply"]
+  n19["Has missing input#63;"]
+  n20["Input needed result"]
+  n21["Request visual group #40;Sticky Note#41;"]
+  n22["Split visual group #40;Sticky Note#41;"]
+  n23["Routing visual group #40;Sticky Note#41;"]
+  n24["IT visual group #40;Sticky Note#41;"]
+  n25["Meeting visual group #40;Sticky Note#41;"]
+  n26["Other visual group #40;Sticky Note#41;"]
+  n27["Missing visual group #40;Sticky Note#41;"]
+  n28["Results visual group #40;Sticky Note#41;"]
+  n0 -->|"output 0"| n1
+  n1 -->|"true"| n2
+  n1 -->|"false"| n5
+  n2 -->|"output 0"| n4
+  n4 -->|"output 0"| n7
+  n7 -->|"true"| n9
+  n7 -->|"false"| n8
+  n9 -->|"output 0"| n19
+  n11 -->|"output 0"| n13
+  n12 -->|"output 0"| n14
+  n16 -->|"output 0"| n17
+  n17 -->|"output 0"| n18
+  n18 -->|"output 0"| n6
+  n8 -->|"output 0"| n6
+  n3 -.->|"ai#95;languageModel"| n2
+  n10 -->|"it"| n11
+  n10 -->|"meeting"| n12
+  n10 -->|"other"| n15
+  n13 -->|"output 0"| n16
+  n14 -->|"output 0"| n16
+  n15 -->|"output 0"| n16
+  n19 -->|"true"| n20
+  n19 -->|"false"| n10
+  n20 -->|"output 0"| n16

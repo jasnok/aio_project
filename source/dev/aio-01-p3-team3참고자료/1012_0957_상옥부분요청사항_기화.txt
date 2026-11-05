@@ -1,0 +1,4 @@
+1. DB 프로필에 area 추가 (추천)    상옥님 schema.sql·seed.py·database.py + 제 monitoring.py    스키마 주석("프로필 주소에서 채움")과 맞음. Profile 조회 때 같이 읽어서 추가 호출이 없음    상옥님 파일 수정이라 동의 필요. 이미 만들어진 app.db에 컬럼을 추가하는 코드도 필요
+
+
+상옥님 이거 해주세요

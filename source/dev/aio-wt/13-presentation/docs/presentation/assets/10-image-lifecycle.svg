@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">청약정보 이미지 업로드와 삭제 흐름</title>
+  <desc id="desc">관리자 이미지 선택부터 FastAPI 검증, Supabase Storage와 데이터베이스 저장, 공고 삭제 시 파일 정리까지의 흐름</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.10"/>
+    </filter>
+    <marker id="arrow-blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#dc2626"/>
+    </marker>
+    <style>
+      .title { font: 700 42px 'Pretendard','Noto Sans KR','Malgun Gothic',sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 21px 'Pretendard','Noto Sans KR','Malgun Gothic',sans-serif; fill: #475569; }
+      .lane { font: 700 24px 'Pretendard','Noto Sans KR','Malgun Gothic',sans-serif; fill: #1e293b; }
+      .step-no { font: 700 18px 'Pretendard','Noto Sans KR','Malgun Gothic',sans-serif; fill: #ffffff; }
+      .step-title { font: 700 23px 'Pretendard','Noto Sans KR','Malgun Gothic',sans-serif; fill: #0f172a; }
+      .step-body { font: 400 17px 'Pretendard','Noto Sans KR','Malgun Gothic',sans-serif; fill: #475569; }
+      .small { font: 500 15px 'Pretendard','Noto Sans KR','Malgun Gothic',sans-serif; fill: #64748b; }
+      .note-title { font: 700 20px 'Pretendard','Noto Sans KR','Malgun Gothic',sans-serif; fill: #0f172a; }
+      .note-body { font: 400 16px 'Pretendard','Noto Sans KR','Malgun Gothic',sans-serif; fill: #475569; }
+      .badge { font: 700 15px 'Pretendard','Noto Sans KR','Malgun Gothic',sans-serif; fill: #1d4ed8; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="#f8fafc"/>
+  <circle cx="1510" cy="40" r="180" fill="#dbeafe" opacity="0.55"/>
+  <text x="70" y="74" class="title">이미지 저장과 삭제: DB와 Storage를 안전하게 연결</text>
+  <text x="70" y="112" class="subtitle">파일은 Storage, 관계·순서는 PostgreSQL — 삭제 시 두 저장소를 순서대로 정리</text>
+
+  <!-- upload lane -->
+  <rect x="70" y="145" width="172" height="42" rx="21" fill="#dbeafe"/>
+  <text x="156" y="173" text-anchor="middle" class="lane" style="fill:#1d4ed8">등록 흐름</text>
+
+  <line x1="360" y1="300" x2="420" y2="300" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow-blue)"/>
+  <line x1="740" y1="300" x2="800" y2="300" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow-blue)"/>
+  <line x1="1120" y1="300" x2="1180" y2="300" stroke="#2563eb" stroke-width="4" marker-end="url(#arrow-blue)"/>
+
+  <rect x="40" y="210" width="320" height="190" rx="22" fill="#ffffff" filter="url(#shadow)"/>
+  <circle cx="82" cy="250" r="23" fill="#2563eb"/>
+  <text x="82" y="257" text-anchor="middle" class="step-no">1</text>
+  <text x="120" y="258" class="step-title">관리자 이미지 선택</text>
+  <text x="74" y="310" class="step-body">JPEG · PNG · WebP</text>
+  <text x="74" y="342" class="step-body">공고당 최대 20장</text>
+  <text x="74" y="374" class="small">첫 장을 대표 이미지로 사용</text>
+
+  <rect x="420" y="210" width="320" height="190" rx="22" fill="#ffffff" filter="url(#shadow)"/>
+  <circle cx="462" cy="250" r="23" fill="#2563eb"/>
+  <text x="462" y="257" text-anchor="middle" class="step-no">2</text>
+  <text x="500" y="258" class="step-title">FastAPI 검증</text>
+  <text x="454" y="310" class="step-body">MIME + 실제 매직넘버</text>
+  <text x="454" y="342" class="step-body">한 장 5MB · 전체 60MB</text>
+  <text x="454" y="374" class="small">하나라도 실패하면 업로드분 정리</text>
+
+  <rect x="800" y="210" width="320" height="190" rx="22" fill="#ffffff" filter="url(#shadow)"/>
+  <circle cx="842" cy="250" r="23" fill="#0f766e"/>
+  <text x="842" y="257" text-anchor="middle" class="step-no">3</text>
+  <text x="880" y="258" class="step-title">Supabase Storage</text>
+  <text x="834" y="310" class="step-body">listing-images 버킷</text>
+  <text x="834" y="342" class="step-body">실제 이미지 파일 저장</text>
+  <text x="834" y="374" class="small">공개 URL 목록 반환</text>
+
+  <rect x="1180" y="210" width="380" height="190" rx="22" fill="#ffffff" filter="url(#shadow)"/>
+  <circle cx="1222" cy="250" r="23" fill="#0f766e"/>
+  <text x="1222" y="257" text-anchor="middle" class="step-no">4</text>
+  <text x="1260" y="258" class="step-title">PostgreSQL 관계 저장</text>
+  <text x="1214" y="310" class="step-body">listings.image_url = 대표 이미지</text>
+  <text x="1214" y="342" class="step-body">listing_images = 전체 URL</text>
+  <text x="1214" y="374" class="small">sort_order 0, 1, 2 … 순서 보존</text>
+
+  <!-- delete lane -->
+  <rect x="70" y="455" width="172" height="42" rx="21" fill="#fee2e2"/>
+  <text x="156" y="483" text-anchor="middle" class="lane" style="fill:#b91c1c">삭제 흐름</text>
+
+  <line x1="300" y1="610" x2="350" y2="610" stroke="#dc2626" stroke-width="4" marker-end="url(#arrow-red)"/>
+  <line x1="600" y1="610" x2="650" y2="610" stroke="#dc2626" stroke-width="4" marker-end="url(#arrow-red)"/>
+  <line x1="900" y1="610" x2="950" y2="610" stroke="#dc2626" stroke-width="4" marker-end="url(#arrow-red)"/>
+  <line x1="1200" y1="610" x2="1250" y2="610" stroke="#dc2626" stroke-width="4" marker-end="url(#arrow-red)"/>
+
+  <g>
+    <rect x="50" y="530" width="250" height="160" rx="20" fill="#ffffff" stroke="#fecaca"/>
+    <circle cx="82" cy="564" r="20" fill="#dc2626"/><text x="82" y="571" text-anchor="middle" class="step-no">1</text>
+    <text x="115" y="572" class="step-title">URL 먼저 조회</text>
+    <text x="78" y="620" class="step-body">삭제할 이미지 목록 확보</text>
+    <text x="78" y="651" class="small">행 삭제 후에는 찾을 수 없음</text>
+  </g>
+
+  <g>
+    <rect x="350" y="530" width="250" height="160" rx="20" fill="#ffffff" stroke="#fecaca"/>
+    <circle cx="382" cy="564" r="20" fill="#dc2626"/><text x="382" y="571" text-anchor="middle" class="step-no">2</text>
+    <text x="415" y="572" class="step-title">공고 삭제</text>
+    <text x="378" y="620" class="step-body">listings 행 삭제</text>
+    <text x="378" y="651" class="small">DB 성공 여부 먼저 확인</text>
+  </g>
+
+  <g>
+    <rect x="650" y="530" width="250" height="160" rx="20" fill="#ffffff" stroke="#fecaca"/>
+    <circle cx="682" cy="564" r="20" fill="#dc2626"/><text x="682" y="571" text-anchor="middle" class="step-no">3</text>
+    <text x="715" y="572" class="step-title">행 자동 정리</text>
+    <text x="678" y="620" class="step-body">listing_images 삭제</text>
+    <text x="678" y="651" class="small">ON DELETE CASCADE</text>
+  </g>
+
+  <g>
+    <rect x="950" y="530" width="250" height="160" rx="20" fill="#ffffff" stroke="#fecaca"/>
+    <circle cx="982" cy="564" r="20" fill="#dc2626"/><text x="982" y="571" text-anchor="middle" class="step-no">4</text>
+    <text x="1015" y="572" class="step-title">참조 확인</text>
+    <text x="978" y="620" class="step-body">다른 공고 사용 여부 조회</text>
+    <text x="978" y="651" class="small">공유 파일 오삭제 방지</text>
+  </g>
+
+  <g>
+    <rect x="1250" y="530" width="300" height="160" rx="20" fill="#ffffff" stroke="#fecaca"/>
+    <circle cx="1282" cy="564" r="20" fill="#dc2626"/><text x="1282" y="571" text-anchor="middle" class="step-no">5</text>
+    <text x="1315" y="572" class="step-title">Storage 파일 삭제</text>
+    <text x="1278" y="620" class="step-body">사용하지 않는 파일만 제거</text>
+    <text x="1278" y="651" class="small">실패 시 기록을 남겨 재처리</text>
+  </g>
+
+  <!-- notes -->
+  <rect x="70" y="752" width="700" height="102" rx="20" fill="#eff6ff" stroke="#93c5fd"/>
+  <text x="105" y="788" class="note-title">왜 두 저장소를 나눴나?</text>
+  <text x="105" y="818" class="note-body">DB는 공고 관계와 순서 조회에 강하고, Storage는 이미지 파일 저장에 적합합니다.</text>
+  <text x="105" y="844" class="note-body">각 저장소의 역할을 분리해 조회 구조와 파일 관리를 단순화했습니다.</text>
+
+  <rect x="830" y="752" width="700" height="102" rx="20" fill="#fff7ed" stroke="#fdba74"/>
+  <text x="865" y="788" class="note-title">핵심 일관성 원칙</text>
+  <text x="865" y="818" class="note-body">PostgreSQL과 Storage는 하나의 트랜잭션으로 묶을 수 없습니다.</text>
+  <text x="865" y="844" class="note-body">따라서 URL 확보 → DB 삭제 확인 → 참조 검사 → 파일 삭제 순서를 지킵니다.</text>
+</svg>
