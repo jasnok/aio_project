@@ -1,6 +1,6 @@
 # AIO 교육 프로젝트 백업
 
-이 폴더는 AIO 교육 과정의 팀 프로젝트와 학습 자료를 보관하는 작업본입니다. 현재 맥의 위치는 `/Users/rola/aio_project`이며, [비공개 GitHub 저장소](https://github.com/jasnok/aio_project_backup)에도 보관 범위를 정해 업로드했습니다. 원본 자료는 Windows에서 2026-11-05에 백업했고, 2026-11-17 기준 맥의 현재 폴더 구조를 이 문서에 반영했습니다.
+이 폴더는 AIO 교육 과정의 팀 프로젝트와 학습 자료를 보관하는 작업본입니다. 현재 맥의 위치는 `/Users/rola/aio_project`이며, [공개 GitHub 저장소](https://github.com/jasnok/aio_project)에도 보관 범위를 정해 업로드했습니다. 원본 자료는 Windows에서 2026-11-05에 백업했고, 2026-11-17 기준 맥의 현재 폴더 구조를 이 문서에 반영했습니다.
 
 ## 폴더 구성
 
@@ -16,7 +16,7 @@ aio_project/
 └── 설치명령_목록.md
 ```
 
-`aio-teamproject`에는 1~5차 팀 프로젝트, 날씨 MCP 배포 프로젝트, `aio-wt`, LawPath 제출본이 있습니다. `aio_LearningMaterials`에는 `aidevs`, `aio-01d4-stu`, `mini`, `mini_agent`, `mini_multi_agent`, `optional_multimodal_agent`가 있습니다. 각 폴더의 README와 의존성 파일이 개별 프로젝트의 우선 안내입니다.
+`aio-teamproject`에는 1~4차 팀 프로젝트, 5차 프로젝트 안내, 날씨 MCP 배포 프로젝트, `aio-wt`, LawPath 제출본이 있습니다. 진행 중인 5차 프로젝트 `chaja-you`의 작업본은 별도 경로 `/Users/rola/chaja-you`에 있으며 [팀 저장소](https://github.com/ik-e/chaja-you)와 연결됩니다. `aio_LearningMaterials`에는 `aidevs`, `aio-01d4-stu`, `mini`, `mini_agent`, `mini_multi_agent`, `optional_multimodal_agent`가 있습니다. 각 폴더의 README와 의존성 파일이 개별 프로젝트의 우선 안내입니다.
 
 ## 로컬과 GitHub의 차이
 

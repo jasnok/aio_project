@@ -1,6 +1,6 @@
 # GitHub 백업 범위
 
-기준: 2026-11-17. 맥의 `/Users/rola/aio_project`를 기준으로 [비공개 GitHub 저장소](https://github.com/jasnok/aio_project_backup)의 `main`에 팀 프로젝트와 학습 자료를 보관합니다. 저장소의 `source`는 `aio-teamproject`와 `aio_LearningMaterials`로 구성됩니다.
+기준: 2026-11-17. 맥의 `/Users/rola/aio_project`를 기준으로 [공개 GitHub 저장소](https://github.com/jasnok/aio_project)의 `main`에 팀 프로젝트와 학습 자료를 보관합니다. 저장소의 `source`는 `aio-teamproject`와 `aio_LearningMaterials`로 구성됩니다.
 
 ## 포함 범위와 제외 사항
 
@@ -8,7 +8,7 @@
 
 여러 `.env.example`은 포함되어 있습니다. 단, `source/aio_LearningMaterials/aidevs/02_supabase-ai-backend/.env.example`은 자격증명으로 쓰일 수 있는 값의 성격이 확인되지 않아 GitHub 업로드에서 제외했습니다. 실제 비밀값은 문서에 옮기지 말고 별도로 안전하게 관리하세요.
 
-`source/aio-teamproject/aio-01-p5-team1/chaja-you`의 소스는 일반 파일로 포함되지만, 로컬에 있는 중첩 저장소의 `.git` 이력과 worktree 연결은 포함되지 않습니다. 이 GitHub 저장소 자체의 이력은 존재하지만 각 원본 프로젝트의 전체 브랜치·미커밋 상태·Git 설정을 대체하지 않습니다.
+진행 중인 5차 프로젝트 `chaja-you`는 `/Users/rola/chaja-you`의 별도 작업본과 [팀 GitHub 저장소](https://github.com/ik-e/chaja-you)에서 관리합니다. 포트폴리오의 현재 트리에는 안내 링크만 두며, 이전에 보관한 소스 스냅샷은 포트폴리오의 과거 커밋 이력에 남아 있습니다. 이 GitHub 저장소 자체의 이력은 존재하지만 각 원본 프로젝트의 전체 브랜치·미커밋 상태·Git 설정을 대체하지 않습니다.
 
 과거 Windows 백업에서 만든 Git bundle과 패치는 과거 이력의 민감정보 가능성 때문에 GitHub에 올리지 않았습니다. 이 맥의 현재 `/Users/rola/aio_project`에는 `git-history` 폴더가 없으므로 이전 bundle의 현재 보관 위치와 복구 가능성은 별도 확인이 필요합니다. [Git 및 플랫폼 점검](Git_플랫폼_점검.md)은 당시 기록입니다.
 
