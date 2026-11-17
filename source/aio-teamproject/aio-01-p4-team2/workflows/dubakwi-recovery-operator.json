@@ -1,0 +1,290 @@
+{
+  "id": "dubakwiRecovery01",
+  "name": "dubakwi-recovery-operator",
+  "active": false,
+  "nodes": [
+    {
+      "name": "R01 수동 운영자 시작",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {}
+    },
+    {
+      "name": "R01a 복구 명령 입력",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        140,
+        0
+      ],
+      "parameters": {
+        "mode": "manual",
+        "duplicateItem": false,
+        "assignments": {
+          "assignments": [
+            {
+              "id": "recovery-payload",
+              "name": "payload",
+              "type": "string",
+              "value": "{}"
+            }
+          ]
+        },
+        "includeOtherFields": false,
+        "options": {}
+      },
+      "notes": "기존 TC-07 운영자 workflow. list/inspect는 읽기 전용이고 inspect의 연결 Jira만 상태·담당자 GET으로 확인한다. claim/resume/finish/complete/release는 기존 수동 운영 명령이다."
+    },
+    {
+      "name": "R02 복구 입력 검증",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        260,
+        0
+      ],
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let payload=null;try{payload=JSON.parse($json.payload)}catch{};const obj=v=>v!==null&&typeof v==='object'&&!Array.isArray(v);const text=v=>typeof v==='string'&&v.trim().length>0;const lookup=payload?.op==='list'||payload?.op==='inspect';const common=['op','scope','dlq_id','operator_id'];const extras={finish:['expected_dlq_revision','expected_state_revision','original_execution_id','recovery_execution_id','verification'],claim:['owner_id','input_hash','expected_dlq_revision','expected_state_revision','original_execution_id','recovery_execution_id','verification'],resume:['owner_id','input_hash','expected_dlq_revision','expected_state_revision','original_execution_id','recovery_execution_id','verification'],complete:['owner_id','input_hash','expected_dlq_revision','expected_state_revision','original_execution_id','recovery_execution_id','jira_issue_id','jira_issue_key','response','effects','verification'],release:['owner_id','input_hash','expected_dlq_revision','expected_state_revision','original_execution_id','recovery_execution_id','reason','verification','target_effect_status']};let valid=false;if(obj(payload)&&payload.op==='list'){const allowed=['op','scope','limit','offset'];valid=Object.keys(payload).every(k=>allowed.includes(k))&&text(payload.scope)&&(payload.limit===undefined||(Number.isInteger(payload.limit)&&payload.limit>=1&&payload.limit<=50))&&(payload.offset===undefined||(Number.isInteger(payload.offset)&&payload.offset>=0&&payload.offset<=10000))}else if(obj(payload)&&payload.op==='inspect'){valid=Object.keys(payload).length===4&&['op','scope','dlq_id','operator_id'].every(k=>Object.hasOwn(payload,k))&&text(payload.scope)&&text(payload.dlq_id)&&text(payload.operator_id)}else if(obj(payload)&&extras[payload.op]){const required=[...common,...extras[payload.op]];const allowed=new Set(required);const keys=Object.keys(payload);const ids=text(payload.original_execution_id)&&text(payload.recovery_execution_id)&&payload.original_execution_id!==payload.recovery_execution_id;const revisions=Number.isInteger(payload.expected_dlq_revision)&&payload.expected_dlq_revision>=0&&Number.isInteger(payload.expected_state_revision)&&payload.expected_state_revision>=0;valid=keys.length===allowed.size&&keys.every(k=>allowed.has(k))&&text(payload.scope)&&text(payload.dlq_id)&&text(payload.operator_id)&&ids&&revisions&&(payload.op==='finish'?payload.verification==='jira_effects_confirmed':payload.op==='claim'?text(payload.owner_id)&&/^[0-9a-f]{64}$/.test(payload.input_hash)&&['recovery_conditions_confirmed','recovery_unknown_effect_checked_absent','recovery_unknown_effect_checked_present'].includes(payload.verification):payload.op==='resume'?text(payload.owner_id)&&/^[0-9a-f]{64}$/.test(payload.input_hash)&&payload.verification==='recovery_conditions_confirmed':payload.op==='complete'?text(payload.owner_id)&&/^[0-9a-f]{64}$/.test(payload.input_hash)&&text(payload.jira_issue_id)&&/^JBYS-[0-9]+$/.test(payload.jira_issue_key)&&obj(payload.response)&&obj(payload.effects)&&payload.verification==='recovery_action_effects_confirmed':text(payload.owner_id)&&/^[0-9a-f]{64}$/.test(payload.input_hash)&&text(payload.reason)&&payload.reason.length<=200&&payload.verification==='recovery_execution_ended_and_effects_rechecked'&&(payload.target_effect_status==='none'||['failed','unknown','confirmed'].includes(payload.target_effect_status)))};return {json:{valid,lookup,payload:valid?payload:null,error_code:valid?null:'invalid_operator_recovery_request'}};"
+      }
+    },
+    {
+      "name": "R03 실행 허용",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        520,
+        0
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.valid }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "name": "R03a 조회 전용 분기",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [690, 0],
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 2},
+          "conditions": [{"leftValue": "={{ $json.lookup }}", "rightValue": "", "operator": {"type": "boolean", "operation": "true", "singleValue": true}}],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "name": "R04 제한 복구 함수 호출",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        780,
+        -100
+      ],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT dubakwi_service.recovery_control($1::jsonb) AS result;",
+        "options": {
+          "queryReplacement": "={{ JSON.stringify($json.payload) }}",
+          "connectionTimeout": 1
+        }
+      },
+      "credentials": {
+        "postgres": {
+          "name": "dubakwi-recovery-operator"
+        }
+      },
+      "notes": "기존 recovery operator credential로 기존 recovery_control action만 실행한다. list/inspect는 별도 읽기 전용 R05 조회 dispatcher로 분기한다."
+    },
+    {
+      "name": "R05 DLQ 읽기 전용 조회",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [920, -260],
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT dubakwi_service.recovery_lookup($1::jsonb) AS result;",
+        "options": {"queryReplacement": "={{ JSON.stringify($json.payload) }}", "connectionTimeout": 1500}
+      },
+      "credentials": {"postgres": {"name": "dubakwi-recovery-operator"}},
+      "notes": "기존 운영자 DB credential만 사용한다. list/inspect allowlist dispatcher이며 재처리 command를 받지 않는다."
+    },
+    {
+      "name": "R06 조회 결과 정리",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1140, -260],
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "let raw=$json.result;if(typeof raw==='string'){try{raw=JSON.parse(raw)}catch{raw=null}};const obj=v=>v!==null&&typeof v==='object'&&!Array.isArray(v);const payload=$('R02 복구 입력 검증').item.json.payload;const op=payload.op;if(op==='list'){const ok=raw?.ok===true&&Array.isArray(raw.items);const items=ok?raw.items.map(d=>({dlq_id:d.dlq_id,request_id:d.request_id,case_id:d.case_id,jira_issue_id:d.jira_issue_id,jira_issue_key:typeof d.jira_issue_key==='string'&&/^JBYS-[0-9]+$/.test(d.jira_issue_key)?d.jira_issue_key:null,failed_step:d.failed_step,error_code:d.error_code,replay_status:d.replay_status,last_execution_id:d.last_execution_id,revision:d.revision,updated_at:d.updated_at})):[];return {json:{ok,operation:'list',scope:raw?.scope??payload.scope,limit:raw?.limit??null,offset:raw?.offset??null,has_more:raw?.has_more===true,items,error_code:ok?null:(raw?.error_code||'dlq_list_failed')}}};const d=obj(raw)&&obj(raw.dlq)?raw.dlq:null;const s=obj(raw)&&obj(raw.state)?raw.state:null;const ok=raw?.ok===true&&d&&s;const key=ok&&typeof d.jira_issue_key==='string'&&/^JBYS-[0-9]+$/.test(d.jira_issue_key)?d.jira_issue_key:null;return {json:{ok:Boolean(ok),operation:'inspect',error_code:ok?null:(raw?.error_code||'dlq_inspect_failed'),dlq:ok?{dlq_id:d.dlq_id,scope:d.scope,request_id:d.request_id,case_id:d.case_id,failed_step:d.failed_step,error_code:d.error_code,replay_status:d.replay_status,revision:d.revision,last_execution_id:d.last_execution_id,jira_issue_id:d.jira_issue_id,jira_issue_key:key}:null,state:ok?{processing_status:s.processing_status,jira_issue_key:s.jira_issue_key,state_revision:s.revision}:null,jira_lookup:{status:key?'pending':(ok?'not_linked':'not_attempted'),issue_key:key}}};"
+      }
+    },
+    {
+      "name": "R07 연결된 Jira 있음",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [1360, -260],
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 2},
+          "conditions": [{"leftValue": "={{ $json.ok && $json.operation === 'inspect' && $json.dlq.jira_issue_key !== null }}", "rightValue": "", "operator": {"type": "boolean", "operation": "true", "singleValue": true}}],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "name": "R08 Jira 상태·담당 조회",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1580, -360],
+      "parameters": {
+        "method": "GET",
+        "url": "={{ 'https://dubakwi-ttareungi-support.atlassian.net/rest/api/2/issue/' + encodeURIComponent($json.dlq.jira_issue_key) + '?fields=status,assignee' }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "jiraSoftwareCloudApi",
+        "options": {"response": {"response": {"fullResponse": true, "neverError": true}}, "timeout": 3500}
+      },
+      "credentials": {"jiraSoftwareCloudApi": {"name": "dubakwi-Jira SW Cloud account"}},
+      "notes": "기존 두바퀴 Jira credential과 프로젝트 도메인을 사용한다. GET status/assignee만 읽고 Jira 변경 호출은 하지 않는다."
+    },
+    {
+      "name": "R09 Jira 결과 정리",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1800, -360],
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const prior=$('R06 조회 결과 정리').item.json;const code=Number($json.statusCode||0);const issue=$json.body;const fields=issue?.fields;const valid=code===200&&issue?.key===prior.dlq?.jira_issue_key&&fields&&typeof fields==='object';const status=valid&&fields.status?{id:fields.status.id??null,name:fields.status.name??null}:null;const assignee=valid&&fields.assignee?{display_name:fields.assignee.displayName??null}:null;return {json:{...prior,jira_lookup:valid?{status:'found',issue_key:issue.key,issue_status:status,assignee}:{status:code===404?'not_found':'error',issue_key:prior.dlq?.jira_issue_key??null,error_code:code===404?'jira_issue_not_found':'jira_lookup_failed'}}};"
+      }
+    },
+    {
+      "name": "R10 조회 결과 반환",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1580, -160],
+      "parameters": {"mode": "runOnceForEachItem", "jsCode": "return {json:$json};"}
+    },
+    {
+      "name": "R11 입력 거절",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        780,
+        100
+      ],
+      "parameters": {}
+    }
+  ],
+  "connections": {
+    "R01 수동 운영자 시작": {
+      "main": [
+        [
+          {
+            "node": "R01a 복구 명령 입력",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "R01a 복구 명령 입력": {
+      "main": [
+        [
+          {
+            "node": "R02 복구 입력 검증",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "R02 복구 입력 검증": {
+      "main": [
+        [
+          {
+            "node": "R03 실행 허용",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "R03 실행 허용": {
+      "main": [
+        [
+          {
+            "node": "R03a 조회 전용 분기",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "R11 입력 거절",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "R03a 조회 전용 분기": {
+      "main": [
+        [
+          {"node": "R05 DLQ 읽기 전용 조회", "type": "main", "index": 0}
+        ],
+        [
+          {"node": "R04 제한 복구 함수 호출", "type": "main", "index": 0}
+        ]
+      ]
+    },
+    "R05 DLQ 읽기 전용 조회": {
+      "main": [[{"node": "R06 조회 결과 정리", "type": "main", "index": 0}]]
+    },
+    "R06 조회 결과 정리": {
+      "main": [[{"node": "R07 연결된 Jira 있음", "type": "main", "index": 0}]]
+    },
+    "R07 연결된 Jira 있음": {
+      "main": [
+        [{"node": "R08 Jira 상태·담당 조회", "type": "main", "index": 0}],
+        [{"node": "R10 조회 결과 반환", "type": "main", "index": 0}]
+      ]
+    },
+    "R08 Jira 상태·담당 조회": {
+      "main": [[{"node": "R09 Jira 결과 정리", "type": "main", "index": 0}]]
+    },
+    "R09 Jira 결과 정리": {
+      "main": [[{"node": "R10 조회 결과 반환", "type": "main", "index": 0}]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": []
+}

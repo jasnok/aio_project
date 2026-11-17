@@ -1,0 +1,192 @@
+/* 온기케어 화면 테마 — 수언 님 시안(index-2.html)의 색·글꼴·카드 모양. 10/12 해든 (두나 님 #43 파일을 시안 색으로 바꿈) */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Noto+Sans+KR:wght@400;500;700;800&display=swap");
+  :root {
+    --ok-bg: #f4f0e8; --ok-surface: #fffdf9; --ok-line: #ebe4d8; --ok-ink: #25313a;
+    --ok-muted: #7b8086; --ok-slate: #3a4a54; --ok-green: #1f6b4f; --ok-mint: #dcefe6;
+    --ok-red: #d03d2f; --ok-red-soft: #f6e2df; --ok-red-line: #ebb8b2;
+    --ok-amber: #c8793f; --ok-amber-soft: #f8eadb; --ok-gray-soft: #eeebe6;
+    --ok-num: "Fraunces", Georgia, serif;
+  }
+  html, body, .stApp, .stApp p, .stApp li, .stApp label, .stApp button, .stApp input,
+  .stApp h1, .stApp h2, .stApp h3, .stApp h4 {
+    font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  }
+  .stApp {
+    color: var(--ok-ink);
+    background-color: var(--ok-bg);
+    background-image:
+      linear-gradient(rgba(60,50,30,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(60,50,30,.035) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  [data-testid="stHeader"] { background: transparent; }
+  [data-testid="stDecoration"] { display: none !important; }
+  /* 툴바(Deploy·메뉴)는 숨기되, 접힌 사이드바를 다시 여는 버튼은 툴바 안에 있으므로 그것만 보이게 한다 (기화 10/12).
+     display:none으로 툴바 전체를 숨기면 사이드바를 한 번 접은 뒤 다시 열 수 없다. */
+  [data-testid="stToolbar"] { visibility: hidden; }
+  [data-testid="stToolbar"] [data-testid="stExpandSidebarButton"] { visibility: visible; }
+  [data-testid="stMainBlockContainer"] { max-width: 1320px; padding-top: 1.6rem; padding-bottom: 3rem; }
+  .stApp h1, .stApp h2, .stApp h3 { color: var(--ok-ink); letter-spacing: -.01em; }
+
+  /* ---------- 사이드바(시연 설정) ---------- */
+  [data-testid="stSidebar"] { background: var(--ok-surface); border-right: 1px solid var(--ok-line); }
+  [data-testid="stSidebar"] .stButton button[kind="primary"] {
+    background: var(--ok-green); border-color: var(--ok-green); font-weight: 700;
+  }
+
+  /* ---------- 카드 공통 ---------- */
+  .st-key-vital_card, .st-key-home_card, .st-key-alert_card, .st-key-logs_card, .st-key-login_card {
+    background: var(--ok-surface);
+    border: 1px solid var(--ok-line);
+    border-radius: 22px;
+    padding: 22px 24px 20px;
+    box-shadow: 0 1px 2px rgba(40,30,10,.04), 0 8px 24px -16px rgba(40,30,10,.18);
+  }
+  .ok-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 4px; }
+  .stApp .ok-card-title { font-size: 1.22rem; font-weight: 800; color: var(--ok-ink); margin: 0; line-height: 1.3; }
+  .stApp .ok-card-sub { font-size: .86rem; color: var(--ok-muted); margin-top: 2px; }
+  .ok-badge {
+    display: inline-block; font-size: .78rem; font-weight: 800; padding: 4px 10px;
+    border-radius: 8px; white-space: nowrap;
+  }
+
+  /* ---------- 숫자 타일 (st.metric) ---------- */
+  .stApp [data-testid="stMetric"] {
+    background: #faf8f4; border: 1px solid var(--ok-line); border-radius: 16px;
+    padding: 14px 16px 12px; min-height: 118px;
+  }
+  .stApp [data-testid="stMetricLabel"] p { font-size: .9rem; font-weight: 700; color: #5b6168; }
+  .stApp [data-testid="stMetricValue"] {
+    font-family: var(--ok-num); font-weight: 500; font-size: 1.7rem; color: var(--ok-ink); padding-top: 10px;
+  }
+  .stApp [data-testid="stMetricValue"], .stApp [data-testid="stMetricValue"] * { white-space: normal !important; overflow: visible !important; text-overflow: clip !important; line-height: 1.15; word-break: keep-all; }
+  .stApp [class*="st-key-tile_"] { position: relative; }
+  .stApp [class*="st-key-tile_missing"] [data-testid="stMetric"] {
+    background: var(--ok-red-soft); border-color: var(--ok-red-line);
+  }
+  .stApp [class*="st-key-tile_missing"] [data-testid="stMetricValue"] { color: #9b6a65; }
+  .stApp .ok-tile-note { position: absolute; left: 17px; bottom: 12px; margin: 0; font-size: .8rem; font-weight: 800; }
+
+  /* ---------- 기기 줄 ---------- */
+  .ok-device {
+    display: flex; align-items: center; gap: 14px; border: 1px solid var(--ok-line); border-radius: 16px;
+    padding: 12px 16px; margin-top: 10px; background: #fff;
+  }
+  .ok-device-icon {
+    width: 40px; height: 40px; border-radius: 12px; background: var(--ok-gray-soft);
+    display: flex; align-items: center; justify-content: center; font-size: 1.15rem;
+  }
+  .ok-device-name { font-weight: 800; color: var(--ok-ink); }
+  .ok-device-state { font-size: .84rem; color: var(--ok-muted); }
+  .ok-switch { margin-left: auto; width: 46px; height: 26px; border-radius: 13px; position: relative; background: #d9d5ce; }
+  .ok-switch::after {
+    content: ""; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%;
+    background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  }
+  .ok-switch.on { background: var(--ok-green); }
+  .ok-switch.on::after { left: 23px; }
+
+  /* ---------- 위험도·승인 카드 ---------- */
+  .st-key-alert_card:has([data-testid="stAlertContentError"]) {
+    border-color: var(--ok-red-line); box-shadow: 0 0 0 4px rgba(208,61,47,.07), 0 8px 24px -16px rgba(208,61,47,.35);
+  }
+  .st-key-alert_card h3 { font-size: 1.1rem; font-weight: 800; }
+  .st-key-alert_card .stButton button {
+    border-radius: 12px; min-height: 48px; font-weight: 800; font-size: 1rem;
+    background: var(--ok-gray-soft); border: none; color: var(--ok-ink);
+  }
+  .st-key-alert_card .stButton button[kind="primary"] {
+    background: var(--ok-red); color: #fff; box-shadow: 0 6px 16px -8px rgba(208,61,47,.8);
+  }
+  .st-key-alert_card .stButton button[kind="primary"]:hover { background: #b9342a; }
+  .st-key-alert_card [data-testid="stImage"] img { border-radius: 14px; }
+  .st-key-alert_card [data-testid="stVerticalBlockBorderWrapper"],
+  .st-key-alert_card [data-testid="stVerticalBlock"] > [data-testid="stLayoutWrapper"] > div[style*="border"] {
+    border-radius: 14px; background: #fff;
+  }
+
+  /* ---------- 알림 상자 (st.success 등) ---------- */
+  .stApp [data-testid="stAlert"] > div { border-radius: 14px; }
+
+  /* ---------- 실행 과정(AutoHealing) 카드 ---------- */
+  .st-key-logs_card h3 { font-size: 1.15rem; font-weight: 800; }
+  .st-key-logs_card [data-testid="stAlert"] p, .st-key-logs_card p { font-size: .92rem; }
+
+  /* ---------- 머리글 ---------- */
+  .ok-brand { display: flex; flex-direction: column; line-height: 1; }
+  .ok-brand small { color: var(--ok-amber); font-weight: 700; font-size: .8rem; margin-left: 40px; letter-spacing: .01em; }
+  .ok-brand b { color: var(--ok-amber); font-size: 2.1rem; font-weight: 800; letter-spacing: -.03em; }
+  .ok-pills { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; padding-top: 10px; }
+  .ok-pill {
+    background: var(--ok-surface); border: 1px solid var(--ok-line); border-radius: 999px;
+    padding: 8px 16px; font-weight: 700; font-size: .9rem; color: var(--ok-ink); white-space: nowrap;
+  }
+  .ok-pill i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--ok-green); margin-right: 8px; vertical-align: middle; }
+  .st-key-logout_button { padding-top: 10px; }
+  .st-key-logout_button button {
+    border-radius: 999px; border: 1px solid var(--ok-line); background: var(--ok-surface); font-weight: 700;
+  }
+
+  /* ---------- 어르신 배너 ---------- */
+  .ok-hero {
+    background: var(--ok-slate); color: #fff; border-radius: 26px; padding: 24px 30px;
+    display: flex; align-items: center; gap: 22px; margin: 6px 0 14px;
+  }
+  .ok-avatar {
+    width: 84px; height: 84px; border-radius: 50%; border: 4px solid #fff; background: #e7dccb;
+    color: var(--ok-slate); display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; font-weight: 800; flex-shrink: 0;
+  }
+  .ok-hero-name { font-size: 1.9rem; font-weight: 800; letter-spacing: -.02em; }
+  .ok-hero-sub { font-size: 1.02rem; font-weight: 700; opacity: .85; margin-top: 4px; }
+  .ok-hero-risk { margin-left: auto; text-align: right; }
+  .ok-hero-risk span { display: inline-block; border-radius: 16px; padding: 12px 22px; font-weight: 800; font-size: 1.1rem; }
+
+  /* ---------- 진행 줄 ---------- */
+  .ok-progress {
+    background: var(--ok-surface); border: 1px solid var(--ok-line); border-radius: 18px;
+    padding: 12px 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 4px; margin-bottom: 14px;
+  }
+  .ok-progress .dot { width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; }
+  .ok-progress .lead { color: var(--ok-green); font-weight: 800; margin-right: 10px; font-size: .95rem; }
+  .ok-progress .step { font-weight: 700; font-size: .95rem; color: #5b6168; }
+  .ok-progress .step.now { color: var(--ok-ink); font-weight: 800; }
+  .ok-progress .arrow { color: #a9a39a; margin: 0 4px; }
+  .ok-progress .state { margin-left: auto; font-size: .85rem; color: var(--ok-muted); font-weight: 700; }
+
+  /* ---------- 좁은 화면 ---------- */
+  @media (max-width: 760px) {
+    .ok-hero { flex-wrap: wrap; padding: 20px; }
+    .ok-hero-risk { margin-left: 0; text-align: left; }
+    .ok-avatar { width: 64px; height: 64px; font-size: 1.5rem; }
+  }
+  /* ---------- 빈 상태·각주·취약도 배지 (두나 님 #43 클래스 유지) ---------- */
+  .care-empty { background: var(--ok-surface); border: 1px dashed #d6ccbb; padding: 24px; border-radius: 18px; color: var(--ok-muted); font-weight: 600; }
+  .care-footnote { font-size: 12px; color: var(--ok-muted); margin-top: 26px; }
+  .care-vulnerability-low { color: var(--ok-green) !important; background: var(--ok-mint) !important; }
+  .care-vulnerability-medium { color: var(--ok-amber) !important; background: var(--ok-amber-soft) !important; }
+  .care-vulnerability-high { color: var(--ok-red) !important; background: var(--ok-red-soft) !important; }
+  .ok-vul { display: inline-block; border-radius: 8px; padding: 2px 10px; margin-left: 6px; font-size: .9rem; }
+  /* ---------- 로그인 입력창 글자 대비 (두나 님 #43) ---------- */
+  [data-testid="stTextInput"] label, [data-testid="stTextInput"] label p { color: var(--ok-ink) !important; font-size: 16px !important; font-weight: 650 !important; }
+  [data-testid="stTextInput"] [data-baseweb="input"], [data-testid="stTextInput"] [data-baseweb="base-input"] { background: #fff !important; border-color: #bfb5a5 !important; }
+  [data-testid="stTextInput"] input { background: #fff !important; color: var(--ok-ink) !important; caret-color: var(--ok-ink); }
+  [data-testid="stTextInput"] input::placeholder { color: #6f6a62 !important; opacity: 1; }
+  [data-testid="stTextInput"] button { color: var(--ok-ink) !important; }
+  .stFormSubmitButton button[kind="primary"] { background: var(--ok-green); border-color: var(--ok-green); color: #fff; font-weight: 700; }
+  [data-testid="stAlert"] [data-testid="stMarkdownContainer"] p, [data-testid="stAlert"] [data-testid="stMarkdownContainer"] li { font-weight: 600; }
+/* ---------- CCTV 화면 틀 (시안의 어두운 카메라 화면) ---------- */
+.st-key-cctv_frame, .st-key-cctv_video_frame { background: #23313a; border-radius: 18px; padding: 14px 16px 12px; color: #fff; margin-bottom: 14px; }
+.st-key-cctv_frame p, .st-key-cctv_frame [data-testid="stCaptionContainer"],
+.st-key-cctv_video_frame p, .st-key-cctv_video_frame [data-testid="stCaptionContainer"] { color: #d9e1e5 !important; font-size: .86rem; }
+.st-key-cctv_frame img { border-radius: 10px; }
+.st-key-cctv_video_frame video { width: 100%; border-radius: 10px; }
+.ok-cctv-head { display: flex; justify-content: space-between; font-weight: 800; font-size: .85rem; color: #fff; }
+.ok-cctv-head i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--ok-red); margin-right: 8px; vertical-align: middle; }
+
+/* ---------- CCTV 영상 자리 (영상 파일이 없을 때) ---------- */
+.care-video-empty {
+  aspect-ratio: 16 / 9; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  background: #121c22; border: 1px dashed #4b5b64; border-radius: 10px; color: #aab8bf; font-size: .85rem; margin-top: 8px;
+}
+.care-video-empty span { font-size: 1.6rem; color: #6f828c; }
