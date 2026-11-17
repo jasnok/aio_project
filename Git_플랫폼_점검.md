@@ -1,5 +1,7 @@
 # Git 및 OpenAI 플랫폼 점검 — 2026-11-05
 
+> **과거 점검 기록:** 아래 내용은 2026-11-05의 Windows 원본과 당시 플랫폼 화면을 설명합니다. `C:\` 경로, 업로드 보류와 플랫폼 상태는 현재 맥이나 GitHub의 상태를 뜻하지 않습니다. 현재 맥의 작업본은 `/Users/rola/aio_project`이며, 현행 구조와 GitHub 범위는 [README](README.md)와 [GitHub 백업 범위](GITHUB_백업범위.md)를 확인하세요. 이 맥의 작업본에는 `git-history`가 없어 아래 bundle의 현재 위치와 복원 가능성은 확인되지 않았습니다. 이후 일부 자료는 GitHub의 비공개 저장소에 반영되었습니다.
+
 ## Git 보존 결과
 26개 Git 표시 대상 중 25개에서 history.bundle을 만들고 git bundle verify를 통과했습니다. 저장소별 원본 경로와 결과는 git-history/manifest.json을 참조하세요. C:\aio-01d4-stu 번들은 임시 폴더에 복제해 HEAD가 원본과 일치함을 확인했습니다. 나머지 번들의 복제는 개별 시험하지 않았습니다. C:\mini\03_mini_project는 Git 연결 확인 실패로 번들이 없습니다.
 
