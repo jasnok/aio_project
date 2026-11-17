@@ -12,6 +12,8 @@
 
 과거 Windows 백업에서 만든 Git bundle과 패치는 과거 이력의 민감정보 가능성 때문에 GitHub에 올리지 않았습니다. 이 맥의 현재 `/Users/rola/aio_project`에는 `git-history` 폴더가 없으므로 이전 bundle의 현재 보관 위치와 복구 가능성은 별도 확인이 필요합니다. [Git 및 플랫폼 점검](Git_플랫폼_점검.md)은 당시 기록입니다.
 
+2026-11-17에 `aio-wt`와 `lawpath-campus-submission`을 현재 트리에서 정리하고 `/Users/rola/aio_project_backup/정리보관_2026-11-17`에 옮겨 보관했습니다. 이 로컬 보관 폴더는 현재 GitHub 트리에 포함되지 않지만, 정리 전 스냅샷은 GitHub 과거 커밋에서 확인할 수 있습니다. 날씨 MCP 배포 프로젝트는 `source/aio_LearningMaterials/05_weather-mcp-deployment-project`로 이동했습니다.
+
 ## 운영 시 주의
 
 2026-11-17에 로컬 루트 브랜치와 인덱스를 GitHub에 맞추면서 작업 중인 파일과 중첩 Git 저장소는 보존했습니다. 로컬 전용 파일이나 중첩 프로젝트의 변경은 Git 상태에 표시될 수 있습니다. 루트 `.gitignore`만으로 모든 비밀값과 중첩 Git 저장소가 제외되는 것은 아니므로, 파일을 일괄 추가하기 전에 업로드 범위를 확인하세요.

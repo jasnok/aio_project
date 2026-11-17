@@ -16,7 +16,9 @@ aio_project/
 └── 설치명령_목록.md
 ```
 
-`aio-teamproject`에는 1~4차 팀 프로젝트, 5차 프로젝트 안내, 날씨 MCP 배포 프로젝트, `aio-wt`, LawPath 제출본이 있습니다. 진행 중인 5차 프로젝트 `chaja-you`의 작업본은 별도 경로 `/Users/rola/chaja-you`에 있으며 [팀 저장소](https://github.com/ik-e/chaja-you)와 연결됩니다. `aio_LearningMaterials`에는 `aidevs`, `aio-01d4-stu`, `mini`, `mini_agent`, `mini_multi_agent`, `optional_multimodal_agent`가 있습니다. 각 폴더의 README와 의존성 파일이 개별 프로젝트의 우선 안내입니다.
+`aio-teamproject`에는 1~4차 팀 프로젝트와 5차 프로젝트 안내가 있습니다. 진행 중인 5차 프로젝트 `chaja-you`의 작업본은 별도 경로 `/Users/rola/chaja-you`에 있으며 [팀 저장소](https://github.com/ik-e/chaja-you)와 연결됩니다. `aio_LearningMaterials`에는 날씨 MCP 배포 실습, `aidevs`, `aio-01d4-stu`, `mini`, `mini_agent`, `mini_multi_agent`, `optional_multimodal_agent`가 있습니다. 각 폴더의 README와 의존성 파일이 개별 프로젝트의 우선 안내입니다.
+
+기존 `aio-wt` 작업본과 `lawpath-campus-submission` 사본은 현재 GitHub 트리에서 정리하고 `/Users/rola/aio_project_backup/정리보관_2026-11-17`에 별도 보관했습니다. 두 폴더의 이전 GitHub 버전은 과거 커밋에도 남아 있습니다. `aio-wt`에는 본 프로젝트와 다른 발표 자료와 작업 버전이 포함됩니다.
 
 ## 로컬과 GitHub의 차이
 
